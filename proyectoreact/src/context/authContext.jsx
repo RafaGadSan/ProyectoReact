@@ -79,8 +79,8 @@ export const AuthContextProvider = ({ children }) => {
       setUser,
       userComplete,
       setUserComplete,
-      userLogin,
-      logout,
+      //userLogin,
+      //logout,
       bridgeData,
     }),
     [user, userComplete]

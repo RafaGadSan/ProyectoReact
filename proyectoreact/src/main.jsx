@@ -7,6 +7,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import About from "./pages/About/About.jsx";
 import { Register } from "./pages/Register/Register.jsx";
+import { CheckCode } from "./pages/CheckCode/CheckCode.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -57,10 +58,10 @@ export const router = createBrowserRouter([
       //   path: "/forgotPassword",
       //   element: <ForgotPassword />,
       // },
-      // {
-      //   path: "/verifyCode",
-      //   element: <CheckCode />,
-      // },
+      {
+        path: "/verifyCode",
+        element: <CheckCode />,
+      },
     ],
   },
 ]);
