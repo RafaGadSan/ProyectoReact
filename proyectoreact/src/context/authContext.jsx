@@ -26,7 +26,7 @@ export const AuthContextProvider = ({ children }) => {
 
   //! estado para el user del register ------ la respuesta completa
 
-  const [allUser, setAllUser] = useState({
+  const [userComplete, setUserComplete] = useState({
     data: {
       confirmationCode: "",
       user: {
@@ -62,8 +62,8 @@ export const AuthContextProvider = ({ children }) => {
     const dataJson = JSON.parse(data);
     console.log(dataJson);
     switch (state) {
-      case "ALLUSER":
-        setAllUser(dataJson);
+      case "USERCOMPLETE":
+        setUserComplete(dataJson);
         localStorage.removeItem("data");
 
         break;
@@ -77,13 +77,13 @@ export const AuthContextProvider = ({ children }) => {
     () => ({
       user,
       setUser,
-      allUser,
-      setAllUser,
+      userComplete,
+      setUserComplete,
       userLogin,
       logout,
       bridgeData,
     }),
-    [user, allUser]
+    [user, userComplete]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
