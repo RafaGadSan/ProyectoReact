@@ -9,7 +9,7 @@ import {
   Button,
   FormControl,
   FormLabel,
-  HStack,
+  VStack,
   Input,
   Link as ChakraLink,
   Text,
@@ -57,10 +57,10 @@ export const Login = () => {
   return (
     <>
       <Box>
-        <HStack>
+        <VStack>
           <Text>Sing in</Text>
           <Text>We are happy to see you again</Text>
-        </HStack>
+        </VStack>
         <form onSubmit={handleSubmit(formSubmit)}>
           <FormControl>
             <FormLabel>email</FormLabel>
@@ -80,7 +80,7 @@ export const Login = () => {
               {...register("password", { required: true })}
             />
           </FormControl>
-          <HStack>
+          <VStack>
             <Text>LOGIN</Text>
             <Button mt={4} colorScheme="teal" type="submit">
               Submit
@@ -92,7 +92,7 @@ export const Login = () => {
                 Change password
               </ChakraLink>
             </Text>
-          </HStack>
+          </VStack>
         </form>
       </Box>
     </>

@@ -51,4 +51,16 @@ export const useLoginError = (res, setRes, userLogin, setLoginOk) => {
       timer: 1500,
     });
   }
+
+  // res 500
+  if (res?.response?.status == 500) {
+    setRes(() => ({}));
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Interval Server Error",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 };
