@@ -24,3 +24,19 @@ export const resendCodeConfirmationUser = async (formData) => {
     .then((res) => res)
     .catch((error) => error);
 };
+
+//! Para el AutoLogin
+
+export const autoLoginUser = async (formData) => {
+  return APIUser.post("users/login/autologin", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};
+
+//!Para el Login
+
+export const loginUserService = async (formData) => {
+  return APIUser.post("/users/login", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};

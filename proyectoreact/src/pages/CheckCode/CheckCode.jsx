@@ -9,6 +9,7 @@ import { useCheckCodeError } from "../../hooks/useCheckCodeError";
 import { useResendCodeError } from "../../hooks/useResendCodeError";
 import { Box, Input, Stack, Text, Button } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { useAutoLogin } from "../../hooks/useAutoLogin";
 
 export const CheckCode = () => {
   const navigate = useNavigate();
@@ -96,12 +97,11 @@ export const CheckCode = () => {
   }
   if (okCheck) {
     console.log("el check está bien");
-    //     if(!localStorage.getItem("user")){
-    //         useAutoLogin(allUser,userLogin);
-
-    //     }else {
-    return <Navigate to="/dashboard" />;
-    //     }
+    if (!localStorage.getItem("user")) {
+      useAutoLogin(userComplete, userLogin);
+    } else {
+      return <Navigate to="/dashboard" />;
+    }
   }
 
   if (userNotFound) {
@@ -116,7 +116,15 @@ export const CheckCode = () => {
           <Text fontSize="xl">Write the code sent to your email</Text>
         </Stack>
         <form onSubmit={handleSubmit(formSubmit)}>
-          <Input type="number" isRequired variant="filled" placeholder="Confirmation Code" />
+          <Input
+            type="number"
+            isRequired
+            variant="filled"
+            placeholder="Confirmation Code"
+            {...register("confirmationCode", {
+              required: "This is required",
+            })}
+          />
           <Button type="submit" disabled={send}>
             Verify Code
           </Button>
