@@ -116,7 +116,7 @@ export const CheckCode = () => {
           <Text fontSize="xl">Write the code sent to your email</Text>
         </Stack>
         <form onSubmit={handleSubmit(formSubmit)}>
-          <Input isRequired variant="filled" placeholder="Confirmation Code" />
+          <Input type="number" isRequired variant="filled" placeholder="Confirmation Code" />
           <Button type="submit" disabled={send}>
             Verify Code
           </Button>
