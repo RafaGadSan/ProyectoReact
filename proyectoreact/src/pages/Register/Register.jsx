@@ -67,7 +67,7 @@ export const Register = () => {
     //gestionamos la res a través de un hook (useRegisterError)
     console.log("res", res);
     useRegisterError(res, setOkRegister, setRes, setUserComplete); // parametros que gestionará el hook
-    if (res?.status == 200) bridgeData("USERCOMPLETE"); //si la res es 200 (ok) gestionamos la asyncronia con el puente
+    if (res?.status === 200) bridgeData("USERCOMPLETE"); //si la res es 200 (ok) gestionamos la asyncronia con el puente
   }, [res]); // en el array de dependencias introducimos el parametro de cuando queremos que se renderice
 
   //!------ Estados de navegacion

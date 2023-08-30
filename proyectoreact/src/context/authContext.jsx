@@ -47,11 +47,11 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   //! -------------------> logout++++++++++++++++++++++++++++++++++++
-  // const logout = () => {
-  //   localStorage.removeItem("user");
-  //   setUser(null);
-  //   navigate("/login");
-  // };
+  const logout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/login");
+  };
 
   //! -----------------------------------------------------------------------
   //? -------- PUENTE PARA CUANDO TENGAMOS PROBLEMAS DE ASYNCRONIA ----------
@@ -80,7 +80,7 @@ export const AuthContextProvider = ({ children }) => {
       userComplete,
       setUserComplete,
       userLogin,
-      //logout,
+      logout,
       bridgeData,
     }),
     [user, userComplete]

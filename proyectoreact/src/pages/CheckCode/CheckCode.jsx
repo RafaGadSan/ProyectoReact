@@ -96,7 +96,7 @@ export const CheckCode = () => {
     return <Navigate to="/register" />;
   }
   if (okCheck) {
-    console.log("el check está bien");
+    console.log("el check esta bien");
     if (!localStorage.getItem("user")) {
       useAutoLogin(userComplete, userLogin);
     } else {
