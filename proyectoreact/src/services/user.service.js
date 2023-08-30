@@ -44,9 +44,22 @@ export const loginUserService = async (formData) => {
 
 //! Para ChangePassword una vez logado
 
+// export const changePasswordUserToken1 = async (formData) => {
+//   console.log(updateToken());
+//   return APIUser.patch("/users/changepassword", formData, {
+//     headers: {
+//       Authorization: `Bearer ${updateToken()}`,
+//     },
+//   })
+//     .then((res) => res)
+//     .catch((error) => error);
+// };
+
 export const changePasswordUserToken = async (formData) => {
   return APIUser.patch("/users/changepassword", formData, {
-    headers: { Authorization: `Bearer ${updateToken()}` },
+    headers: {
+      Authorization: `Bearer ${updateToken()}`,
+    },
   })
     .then((res) => res)
     .catch((error) => error);

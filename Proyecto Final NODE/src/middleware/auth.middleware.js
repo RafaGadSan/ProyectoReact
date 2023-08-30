@@ -9,6 +9,7 @@ dotenv.config();
 const isAuth = async (req, res, next) => {
   // como es un token de tipo bearer le quitamos el prefijo para poder utlizarlo
   const token = req.headers.authorization?.replace('Bearer ', '');
+  console.log('token', token);
   // si no hay token  le lanzamos un error
   if (!token) {
     return next(new Error('Unauthorized'));
@@ -17,7 +18,9 @@ const isAuth = async (req, res, next) => {
   try {
     // vamos a decodificar el token para sacar el id
     const decoded = verifyToken(token, process.env.JWT_SECRET);
+    console.log(`algo2`, decoded);
     req.user = await User.findById(decoded.id);
+    console.log(`algo`, req.user);
 
     // si todo esta bien continuamos
     next();
