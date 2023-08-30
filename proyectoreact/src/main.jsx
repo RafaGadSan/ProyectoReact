@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home.jsx";
 import About from "./pages/About/About.jsx";
 import { Register } from "./pages/Register/Register.jsx";
 import { CheckCode } from "./pages/CheckCode/CheckCode.jsx";
+import { Login } from "./pages/Login/Login.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -26,11 +27,11 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      // {
-      //   path: "/login",
-      //   element: <Login />,
-      // },
-      // {
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      //{
       //   path: "/profile",
       //   element: <Profile />,
       // },

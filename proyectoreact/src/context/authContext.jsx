@@ -38,13 +38,13 @@ export const AuthContextProvider = ({ children }) => {
 
   //! ---------------------->login+++++++++++++++++++++++++++++++++++++
 
-  // const userLogin = (data) => {
-  //   // la data la recibimos como un string
-  //   localStorage.setItem("user", data);
-  //   // meterlo al contexto
-  //   const parseUser = JSON.parse(data);
-  //   setUser(() => parseUser);
-  // };
+  const userLogin = (data) => {
+    // la data la recibimos como un string
+    localStorage.setItem("user", data);
+    // meterlo al contexto
+    const parseUser = JSON.parse(data);
+    setUser(() => parseUser);
+  };
 
   //! -------------------> logout++++++++++++++++++++++++++++++++++++
   // const logout = () => {
@@ -79,7 +79,7 @@ export const AuthContextProvider = ({ children }) => {
       setUser,
       userComplete,
       setUserComplete,
-      //userLogin,
+      userLogin,
       //logout,
       bridgeData,
     }),

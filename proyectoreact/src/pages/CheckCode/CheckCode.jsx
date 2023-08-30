@@ -72,7 +72,7 @@ export const CheckCode = () => {
     }
   };
 
-  //UseEffect para gestionar los errores cuando cambie la res del checkCode
+  //UseEffect para gestionar los errores cuando cambie la res del checkCode.
   useEffect(() => {
     console.log(res);
     useCheckCodeError(

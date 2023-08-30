@@ -12,10 +12,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  Radio,
-  RadioGroup,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 import { Uploadfile } from "../../components/UploadFile/UploadFile";
 
