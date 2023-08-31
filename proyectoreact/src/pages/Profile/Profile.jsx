@@ -4,10 +4,13 @@ import { Box, IconButton } from "@chakra-ui/react";
 import { LockIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
 import { FormProfile } from "../../components/FormProfile/FormProfile";
 import { ChangePassword } from "../../components/ChangePassword/ChangePassword";
+import { useDeleteUser } from "../../hooks/useDeleteUser";
+import { NavLink } from "react-router-dom";
 
 export const Profile = () => {
-  const [changeRender, setChangeRender] = useState(true);
   const { setUser } = useAuth();
+  const [changeRender, setChangeRender] = useState(true);
+
   return (
     <>
       <Box>
@@ -25,13 +28,15 @@ export const Profile = () => {
           icon={<RepeatIcon />}
           onClick={() => setChangeRender(true)}
         />
-        <IconButton
-          colorScheme="teal"
-          aria-label="user delete button"
-          size="lg"
-          icon={<DeleteIcon />}
-          onClick={() => setChangeRender(setUser)}
-        />
+        <NavLink to="/">
+          <IconButton
+            colorScheme="teal"
+            aria-label="user delete button"
+            size="lg"
+            icon={<DeleteIcon />}
+            onClick={() => useDeleteUser(setUser)}
+          />
+        </NavLink>
         <Box>{changeRender ? <FormProfile /> : <ChangePassword />}</Box>
       </Box>
     </>

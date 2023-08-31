@@ -2,6 +2,8 @@ import { Avatar, Box, Button, Flex, Spacer } from "@chakra-ui/react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import { Dashboard } from "../../pages/Dashboard/Dashboard";
+import { Profile } from "../../pages/Profile/Profile";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -31,6 +33,16 @@ const Navbar = () => {
               <Button mx="4" onClick={() => logout()}>
                 Logout
               </Button>
+            </NavLink>
+          )}
+          {user && (
+            <NavLink to="/dashboard" as="div">
+              <Button mx="4">Dashboard</Button>
+            </NavLink>
+          )}
+          {user && (
+            <NavLink to="/profile" as="div">
+              <Button mx="4">Profile</Button>
             </NavLink>
           )}
           <Avatar

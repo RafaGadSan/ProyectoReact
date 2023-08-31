@@ -10,6 +10,8 @@ import { Register } from "./pages/Register/Register.jsx";
 import { CheckCode } from "./pages/CheckCode/CheckCode.jsx";
 import { Login } from "./pages/Login/Login.jsx";
 import { Profile } from "./pages/Profile/Profile.jsx";
+import { Dashboard } from "./pages/Dashboard/Dashboard.jsx";
+import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -36,10 +38,10 @@ export const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
-      // {
-      //   path: "/dashboard",
-      //   element: <Dashboard />,
-      // },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
       // {
       //   path: "/recipes",
       //   element: <Recipes/>,
@@ -56,10 +58,10 @@ export const router = createBrowserRouter([
       //   path:"/ingredients/ingredient/:id",
       //   element: <DetailedIngredient/>,
       // },
-      // {
-      //   path: "/forgotPassword",
-      //   element: <ForgotPassword />,
-      // },
+      {
+        path: "/forgotPassword",
+        element: <ForgotPassword />,
+      },
       {
         path: "/verifyCode",
         element: <CheckCode />,

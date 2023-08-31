@@ -62,7 +62,6 @@ export const FormProfile = () => {
   };
 
   useEffect(() => {
-    console.log(res);
     useUpdateError(res, setRes, setUser, logout);
   }, [res]);
   return (
