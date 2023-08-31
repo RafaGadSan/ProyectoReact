@@ -12,6 +12,7 @@ import { Login } from "./pages/Login/Login.jsx";
 import { Profile } from "./pages/Profile/Profile.jsx";
 import { Dashboard } from "./pages/Dashboard/Dashboard.jsx";
 import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword.jsx";
+import { Ingredients } from "./pages/Ingredients/Ingredients.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -50,10 +51,10 @@ export const router = createBrowserRouter([
       //   path: "/recipes/recipe/:id",
       //   element: <DetailedRecipe/>,
       // },
-      // {
-      //   path: "/ingredients",
-      //   element: <Ingredients/>,
-      // },
+      {
+        path: "/ingredients",
+        element: <Ingredients />,
+      },
       // {
       //   path:"/ingredients/ingredient/:id",
       //   element: <DetailedIngredient/>,
