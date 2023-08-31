@@ -5,7 +5,7 @@ import { Ingredient } from "../../components/Ingredient/Ingredient";
 import { Link } from "react-router-dom";
 
 export const Ingredients = () => {
-  const [ingredientsList, setIngredientsList] = useState([{}]); // Creamos un estado paragettear y settear la informacion, la inicializamos con u array de objetos vacia
+  const [ingredientsList, setIngredientsList] = useState(null); // Creamos un estado paragettear y settear la informacion, la inicializamos con u array de objetos vacia
   useEffect(() => {
     //UseEffect para setear la informacion, es asyncrona porque nos traemos la info del back
     (async () => {
@@ -19,18 +19,22 @@ export const Ingredients = () => {
     <>
       <Flex justify="center" alignItems="center" dir="column" wrap="wrap">
         {/*mapeamos la lista de ingredientes para obtener cada uno de ellos */}
-        {ingredientsList.map((ingredient) => (
-          <Box key={ingredient.id}>
-            <Link to={`/ingredients/ingredient/${ingredient.id}`}>
-              <Image
-                maxW={100}
-                src={ingredient.image}
-                alt="imagen del ingrediente"
-              />
-            </Link>
-            <Text>name:{ingredient.name}</Text>
-          </Box>
-        ))}
+        {ingredientsList &&
+          ingredientsList.map((ingredient) => (
+            <Box key={ingredient._id}>
+              <Link
+                to={`/ingredients/ingredient/${ingredient.name}`}
+                state={ingredient}
+              >
+                <Image
+                  maxW={100}
+                  src={ingredient.image}
+                  alt="imagen del ingrediente"
+                />
+              </Link>
+              <Text>name:{ingredient.name}</Text>
+            </Box>
+          ))}
       </Flex>
     </>
   );
