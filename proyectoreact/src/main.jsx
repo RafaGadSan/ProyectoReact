@@ -15,6 +15,7 @@ import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword.jsx";
 import { Ingredients } from "./pages/Ingredients/Ingredients.jsx";
 import { Protected } from "./components/Protected/Protected.jsx";
 import { ProtectedCheckChildren } from "./components/ProtectedCheckChildren/ProtectedCheckChildren.jsx";
+import { Recipes } from "./pages/Recipes/Recipes.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -53,10 +54,10 @@ export const router = createBrowserRouter([
           </Protected>
         ),
       },
-      // {
-      //   path: "/recipes",
-      //   element: <Recipes/>,
-      // },
+      {
+        path: "/recipes",
+        element: <Recipes />,
+      },
       // {
       //   path: "/recipes/recipe/:id",
       //   element: <DetailedRecipe/>,

@@ -7,6 +7,8 @@ export const getAllIngredients = async () => {
     .catch((error) => error);
 };
 
+
+//! Ingredientes por ID
 export const getIngredientById = async (id) => {
   return APIUser.get(`/ingredients/${id}`)
     .then((res) => res) //promesa para gestionar la asincronia.

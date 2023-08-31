@@ -11,9 +11,13 @@ const Navbar = () => {
   return (
     <nav>
       <Flex justifyContent="space-around" p="10">
-        <Box>
+        <Box className="homeavatar" >
+          <Avatar
+            name="logo"
+            src="https://us.123rf.com/450wm/moleks/moleks1507/moleks150700003/41889582-el-servicio-de-comida-caf%C3%A9-vector-logo-plantilla-de-dise%C3%B1o.jpg?ver=6"
+          />
           <NavLink to="/">
-            <Button>Home</Button>
+            <Button className="homebutton">Home</Button>
           </NavLink>
         </Box>
         <Spacer />
@@ -45,10 +49,6 @@ const Navbar = () => {
               <Button mx="4">Profile</Button>
             </NavLink>
           )}
-          <Avatar
-            name="logo"
-            src="https://us.123rf.com/450wm/moleks/moleks1507/moleks150700003/41889582-el-servicio-de-comida-caf%C3%A9-vector-logo-plantilla-de-dise%C3%B1o.jpg?ver=6"
-          />
         </Box>
       </Flex>
     </nav>
