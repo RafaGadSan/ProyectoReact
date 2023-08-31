@@ -6,3 +6,9 @@ export const getAllIngredients = async () => {
     .then((res) => res) //promesa para gestionar la asincronia.
     .catch((error) => error);
 };
+
+export const getIngredientById = async (id) => {
+  return APIUser.get(`/ingredients/${id}`)
+    .then((res) => res) //promesa para gestionar la asincronia.
+    .catch((error) => error);
+};

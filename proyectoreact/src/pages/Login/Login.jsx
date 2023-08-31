@@ -49,7 +49,7 @@ export const Login = () => {
   if (loginOk) {
     if (res.data.user.check == false) {
       //en caso de loggearse bien pero sin haber hecho el checkeo del confirmationCode
-      return <Navigate to="/verfyCode" />; // nos redirige a la verificacion del codigo
+      return <Navigate to="/verifyCode" />; // nos redirige a la verificacion del codigo
     } else {
       return <Navigate to="/dashboard" />; // nos redirige a la dashboard porque el codeConfirmation esta ok
     }

@@ -13,6 +13,8 @@ import { Profile } from "./pages/Profile/Profile.jsx";
 import { Dashboard } from "./pages/Dashboard/Dashboard.jsx";
 import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword.jsx";
 import { Ingredients } from "./pages/Ingredients/Ingredients.jsx";
+import { Protected } from "./components/Protected/Protected.jsx";
+import { ProtectedCheckChildren } from "./components/ProtectedCheckChildren/ProtectedCheckChildren.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -37,11 +39,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <Protected>
+            <Profile /> {/*children protegido */}
+          </Protected>
+        ),
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <Protected>
+            <Dashboard /> {/*children protegido */}
+          </Protected>
+        ),
       },
       // {
       //   path: "/recipes",
@@ -65,7 +75,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/verifyCode",
-        element: <CheckCode />,
+        element: (
+          <ProtectedCheckChildren>
+            <CheckCode /> {/*children protegido */}
+          </ProtectedCheckChildren>
+        ),
       },
     ],
   },
@@ -76,4 +90,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-//!al registrarse no se actualiza el token
