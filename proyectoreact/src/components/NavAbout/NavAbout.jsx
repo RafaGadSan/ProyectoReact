@@ -6,7 +6,7 @@ const NavAbout = () => {
   return (
     <nav>
       <NavLink to="/about">
-        <Button>About</Button>
+        <Button colorScheme="teal">About</Button>
       </NavLink>
     </nav>
   );

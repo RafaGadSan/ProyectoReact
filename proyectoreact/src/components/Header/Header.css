@@ -1,5 +1,11 @@
 header {
-  width: 100vw;
+  min-width: 100vw;
   height: 15vh;
   background: black;
+  -webkit-box-shadow: 10px 10px 25px -1px rgba(255, 130, 67, 1);
+  -moz-box-shadow: 10px 10px 25px -1px rgba(255, 130, 67, 1);
+  box-shadow: 10px 10px 25px -1px rgba(255, 130, 67, 1);
+  border-bottom: 1px rgba(255, 130, 67, 1);
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
 }

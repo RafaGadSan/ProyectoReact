@@ -1,7 +1,17 @@
 .homeavatar {
-    display: flex;
-    gap: 10px;
+    row-gap: 5px;
+    width: 15vw;
+    height: 12vh;
+    justify-content: space-around;
     align-items: center;
-
 }
+.buttonsbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5px;
+    width: 30vw;
+    height: 12vh;
+}
+
 
