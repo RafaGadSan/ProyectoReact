@@ -66,7 +66,12 @@ export const FormProfile = () => {
   }, [res]);
   return (
     <>
-      <Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Box>
           <FigureUser user={user} />
         </Box>

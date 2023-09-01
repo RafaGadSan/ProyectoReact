@@ -18,6 +18,10 @@ import { ProtectedCheckChildren } from "./components/ProtectedCheckChildren/Prot
 import { Recipes } from "./pages/Recipes/Recipes.jsx";
 import { Ingredient } from "./components/Ingredient/Ingredient.jsx";
 import { Recipe } from "./components/Recipe/Recipe.jsx";
+import { AdminRecipes } from "./pages/AdminRecipes/AdminRecipes.jsx";
+import { AdminIngredients } from "./pages/AdminIngredients/AdminIngredients.jsx";
+import { ProtectedRoleRecipe } from "./components/ProtectecRoleRecipe/ProtectedRoleRecipe.jsx";
+import { ProtectedRoleIngredient } from "./components/ProtectedRoleIngredient/ProtectedRoleIngredient.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +86,26 @@ export const router = createBrowserRouter([
           <ProtectedCheckChildren>
             <CheckCode /> {/*children protegido */}
           </ProtectedCheckChildren>
+        ),
+      },
+      {
+        path: "/adminRecipe",
+        element: (
+          <Protected>
+            <ProtectedRoleRecipe>
+              <AdminRecipes />
+            </ProtectedRoleRecipe>
+          </Protected>
+        ),
+      },
+      {
+        path: "/adminIngredient",
+        element: (
+          <Protected>
+            <ProtectedRoleIngredient>
+              <AdminIngredients />
+            </ProtectedRoleIngredient>
+          </Protected>
         ),
       },
     ],

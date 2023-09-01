@@ -56,7 +56,15 @@ export const Login = () => {
   }
   return (
     <>
-      <Box>
+      <Box
+        width="50vw"
+        height="60vh"
+        display="flex"
+        direction="column"
+        justify="center"
+        alignItems="center"
+        backdropFilter="blur(10px)"
+      >
         <VStack>
           <Text>Sing in</Text>
           <Text>We are happy to see you again</Text>

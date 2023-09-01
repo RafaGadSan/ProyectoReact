@@ -6,13 +6,12 @@ import { getIngredientById } from "../../services/ingredient.service";
 //hacer servicio
 
 export const Recipe = () => {
-  //le pasamos el id de ingredients como parametro
   const navigate = useNavigate();
 
-  const location = useLocation();
+  const location = useLocation(); // usamos uselocaion para traernos la info de ingredients y ahorrar una llamada al servicio
 
   const [recipe, setRecipe] = useState(location.state);
-  const [ingredients, setIngredients] = useState(null); // array de objetos y cada objeto es el ingrediente en cuestion
+  const [ingredients, setIngredients] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,37 +20,25 @@ export const Recipe = () => {
 
       for (const ing of recipe.ingredients) {
         const data = await getIngredientById(ing); //!2.esperas a que se rellenen los ingredientes
-        tempIngredients.push(data.data.data); // array de ingredientes
+        tempIngredients.push(data.data.data);
       }
 
       setIngredients(tempIngredients); //!3.una vez lleno, lo seteamos.
     };
 
     getData();
-
-    //   useEffect para setear el ingrediente (asyncrona xq viene del back) con la funcion de getById del service
   }, [recipe, setIngredients]);
 
-  //   console.log("ingrediente", ingredient);
-  //   console.log("IDingrediente", idIngredient);
   return (
     <VStack>
       {recipe && (
         <>
-          {/* {" "}
-            <Image src={recipe.image} alt="imagen de recipe" />
-            <Text>fat:{recipe.fat}</Text>
-            <Text>fiber:{recipe.fiber}</Text>
-            <Text>protein:{recipe.protein}</Text>
-            <Text>salt:{recipe.salt}</Text>
-            <Text>Simple sugars:{recipe.simpleSugars}</Text>
-            <Text>Total sugars:{recipe.totalSugars}</Text>
-            <Button onClick={() => navigate("/recipes")}>
-              Back to recipes
-            </Button> */}
           <Image width="100px" src={recipe.image} alt="imagen de recipe" />
-          <Text>{recipe.name}</Text>
-
+          <Text>Name:{recipe.name}</Text>
+          <Text>Preparation time:{recipe.preparationTime}</Text>
+          <Text>Recipe Steps: {recipe.steps}</Text>
+          <Text>Ingredients:</Text>
+          {/*mapeamos los ingredientes para pintarlos en las recetas (si tienen) */}
           {ingredients &&
             ingredients.map((ing) => <p key={ing._id}>{ing.name}</p>)}
 

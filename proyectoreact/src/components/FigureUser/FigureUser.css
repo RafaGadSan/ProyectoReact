@@ -1,0 +1,9 @@
+.imageUser {
+  width: 400px;
+  height: 400px;
+  position: fixed;
+}
+
+h4 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
