@@ -10,7 +10,7 @@ const App = () => {
     <AuthContextProvider>
       <ChakraProvider>
         <Header />
-        <main>
+        <main className="main">
           <Outlet />
         </main>
         <Footer />

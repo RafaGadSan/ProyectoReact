@@ -19,10 +19,10 @@ const Home = () => {
           justifyContent="space-around"
           alignItems="center"
           paddingInline="50px"
-          boxShadow='2xl'
+          boxShadow='dark-lg'
           
         >
-          <Text fontSize="2xl" as="bold" textAlign="center">
+          <Text fontSize="2xl" as="b" textAlign="center">
             Entra y disfruta de nuestras recetas, ingredientes y toda su
             información
           </Text>

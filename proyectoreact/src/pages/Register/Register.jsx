@@ -81,8 +81,19 @@ export const Register = () => {
   //pintamos el formulario
   return (
     <>
-      <Box as="div" className="form-wrap">
-        <Text fontSize="3xl">Sign in</Text>
+      <Box
+        as="div"
+        className="form-wrap"
+        width="30vw"
+        p="1"
+        background="#ff8243"
+        border="1px yellow"
+        borderRadius={10}
+        boxShadow='dark-lg'
+      >
+        <Text fontSize="3xl" as="b">
+          Sign in
+        </Text>
         <Text fontSize="2xl">It's free & only takes a minute</Text>
         <form onSubmit={handleSubmit(formSubmit)}>
           {" "}
@@ -137,6 +148,7 @@ export const Register = () => {
                 boxShadow:
                   "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
               }}
+              background="#ff8243"
             >
               Hombre
             </Button>
@@ -148,6 +160,7 @@ export const Register = () => {
                 boxShadow:
                   "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
               }}
+              background="#ff8243"
             >
               Mujer
             </Button>

@@ -57,16 +57,20 @@ export const Login = () => {
   return (
     <>
       <Box
-        width="50vw"
+        width="60vw"
         height="60vh"
         display="flex"
-        direction="column"
-        justify="center"
+        flexWrap="wrap"
+        flexDir="column"
+        justifyContent="center"
         alignItems="center"
-        backdropFilter="blur(10px)"
+        background="#ff8243"
+        border="1px yellow"
+        borderRadius="10"
+        boxShadow='dark-lg'
       >
         <VStack>
-          <Text>Sing in</Text>
+          <Text as="b" fontSize="4xl">Sign in</Text>
           <Text>We are happy to see you again</Text>
         </VStack>
         <form onSubmit={handleSubmit(formSubmit)}>
@@ -95,7 +99,7 @@ export const Login = () => {
             </Button>
             <Text>
               Have you forgotten the password?
-              <ChakraLink as={ReactRouterLink} to="/forgotpassword">
+              <ChakraLink as={ReactRouterLink} to="/forgotpassword" textColor="teal">
                 {" "}
                 Change password
               </ChakraLink>
