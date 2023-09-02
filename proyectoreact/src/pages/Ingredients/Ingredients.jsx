@@ -17,22 +17,23 @@ export const Ingredients = () => {
 
   return (
     <>
-      <Flex justify="center" alignItems="center" dir="column" wrap="wrap">
+      <Flex display="flex" justify="center" alignItems="center" dir="column" wrap="wrap" gap="5px">
         {/*mapeamos la lista de ingredientes para obtener cada uno de ellos */}
         {ingredientsList &&
           ingredientsList.map((ingredient) => (
-            <Box key={ingredient._id}>
+            <Box key={ingredient._id} display="flex" justifyContent="center" alignItems="center" flexDirection="column" border="1px" bgColor="#ff8243" borderRadius="10%" gap="2px" p="8px">
               <Link
                 to={`/ingredients/ingredient/${ingredient.name}`}
                 state={ingredient}
               >
                 <Image
-                  maxW={100}
+                  maxW={150}
+                  borderRadius="10%"
                   src={ingredient.image}
                   alt="imagen del ingrediente"
                 />
               </Link>
-              <Text>name:{ingredient.name}</Text>
+              <Text as="cite" columnGap="3px">Name:{ingredient.name}</Text>
             </Box>
           ))}
       </Flex>

@@ -57,7 +57,7 @@ const Navbar = () => {
           )}
           {user && (
             <NavLink to="/profile" as="div">
-              <Button mx="4">Profile</Button>
+              <Button mx="4" bgColor="#ffbf00">Profile</Button>
             </NavLink>
           )}
           {user && (user.role == "nutricionista" || user.role == "admin") && (

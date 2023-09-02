@@ -16,22 +16,44 @@ export const Recipes = () => {
 
   return (
     <>
-      <Flex justify="center" alignItems="center" dir="column" wrap="wrap">
+      <Flex
+        display="flex"
+        justify="center"
+        alignItems="center"
+        dir="column"
+        wrap="wrap"
+        gap="5px"
+      >
         {recipesList &&
           recipesList.map((recipe) => (
-            <Box key={recipe._id}>
+            <Box
+              key={recipe._id}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              flexDirection="column"
+              border="1px"
+              bgColor="#ff8243"
+              borderRadius="10%"
+              gap="2px"
+              p="8px"
+            >
               <Link
                 to={`/recipes/recipe/${recipe.name}`}
                 state={recipe}
                 // key={recipe.id}
               >
                 <Image
-                  maxW={100}
+                  width={200}
+                  height={200}
+                  borderRadius="10%"
                   src={recipe.image}
                   alt="imagen de la receta"
                 />
               </Link>
-              <Text>Nombre: {recipe.name}</Text>
+              <Text as="cite" columnGap="3px">
+                Nombre: {recipe.name}
+              </Text>
             </Box>
           ))}
       </Flex>

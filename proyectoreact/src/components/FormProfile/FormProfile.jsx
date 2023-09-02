@@ -69,7 +69,7 @@ export const FormProfile = () => {
       <Box
         display="flex"
         justifyContent="center"
-        flexDirection="column"
+        flexDirection="row"
         alignItems="center"
       >
         <Box>
