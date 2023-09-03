@@ -167,7 +167,7 @@ export const AdminIngredients = () => {
                   defaultValue={ingredient.fiber}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
                 />
-                <Button>Photo</Button>
+                
                 <Button type="submit" disabled={send}>
                   Save
                 </Button>

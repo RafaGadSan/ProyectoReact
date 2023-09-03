@@ -7,12 +7,12 @@ const Navbar = () => {
   const { user, logout } = useAuth()
 
   return (
-    <nav>
-      <Flex justifyContent="space-around" p="7px" height="12vh">
+    <nav className="headernav">
+      <Flex justifyContent="space-around" alignItems="center" height="14vh">
         <Box className="homeavatar" display="flex">
           <Avatar
             height="12vh"
-            width="50%"
+            width="30%"
             position="cover"
             name="logo"
             src="https://us.123rf.com/450wm/moleks/moleks1507/moleks150700003/41889582-el-servicio-de-comida-caf%C3%A9-vector-logo-plantilla-de-dise%C3%B1o.jpg?ver=6"
@@ -30,8 +30,8 @@ const Navbar = () => {
             </Button>
           </NavLink>
         </Box>
-        <Spacer />
-        <Box className="buttonsbar">
+        
+        <Box className="buttonsbar" >
           {!user && (
             <NavLink to="/login" as="div">
               <Button bgColor="#ffbf00" mx="4">

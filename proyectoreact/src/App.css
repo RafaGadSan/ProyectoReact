@@ -7,8 +7,9 @@
 .main {
   width: 100vw;
   height: 75vh;
-  background-color: rgb(221, 241, 248);
+  background-color: rgba(221, 241, 248, 0.225);
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }

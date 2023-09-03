@@ -1,5 +1,6 @@
-header {
-  min-width: 100vw;
+.header {
+  
+  width: 100vw;
   height: 15vh;
   background: black;
   -webkit-box-shadow: 3px 16px 25px 2px rgba(255, 130, 67, 1);

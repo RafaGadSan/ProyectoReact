@@ -1,19 +1,24 @@
+.headernav {
+  width: 100vw;
+  height: 14vh;
+}
+
 .homeavatar {
   row-gap: 5px;
-  width: 15vw;
+  width: 25vw;
   height: 12vh;
   justify-content: space-around;
   align-items: center;
 }
 .buttonsbar {
   display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  row-gap: 5px;
-  width: 30vw;
+  row-gap: 3px;
+  width: 50vw;
   height: 12vh;
 }
 
-nav {
-  max-width: 90vw;
-}
+

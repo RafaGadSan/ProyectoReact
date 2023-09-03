@@ -5,7 +5,7 @@ import "./Header.css"
 
 const Header = () => {
   return (
-    <Box as="header">
+    <Box as="header" className="header">
       <Navbar></Navbar>
     </Box>
   )
