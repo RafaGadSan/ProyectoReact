@@ -20,6 +20,7 @@ export const Recipe = () => {
 
       for (const ing of recipe.ingredients) {
         const data = await getIngredientById(ing) //!2.esperas a que se rellenen los ingredientes
+        console.log(data)
         tempIngredients.push(data.data.data)
       }
 
