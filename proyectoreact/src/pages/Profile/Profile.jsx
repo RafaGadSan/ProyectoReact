@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { Box, IconButton } from "@chakra-ui/react";
+import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { LockIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
 import { FormProfile } from "../../components/FormProfile/FormProfile";
 import { ChangePassword } from "../../components/ChangePassword/ChangePassword";
@@ -13,7 +13,20 @@ export const Profile = () => {
 
   return (
     <>
-      <Box>
+    <Flex  background="#ff8243"
+        border="1px yellow"
+        borderRadius={10}
+        boxShadow='dark-lg'
+        width="40vw"
+        justifyContent="space-around"
+        paddingY="5">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        gap="3px"
+      >
         <IconButton
           colorScheme="teal"
           aria-label="go to ChangePassword"
@@ -37,8 +50,9 @@ export const Profile = () => {
             onClick={() => useDeleteUser(setUser)}
           />
         </NavLink>
-        <Box>{changeRender ? <FormProfile /> : <ChangePassword />}</Box>
       </Box>
+      <Box>{changeRender ? <FormProfile /> : <ChangePassword />}</Box>
+      </Flex >
     </>
   );
 };

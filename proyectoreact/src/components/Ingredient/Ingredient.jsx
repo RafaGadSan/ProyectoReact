@@ -28,18 +28,36 @@ export const Ingredient = () => {
   //   console.log("ingrediente", ingredient);
   //   console.log("IDingrediente", idIngredient);
   return (
-    <VStack>
+    <VStack
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      border="1px"
+      bgColor="#ff8243"
+      borderRadius="10%"
+      gap="5px"
+      paddingY="5px"
+      height="50vh"
+      width="40vw"
+    >
       {ingredient && (
         <>
           {" "}
-          <Image src={ingredient.image} alt="imagen de ingrediente" />
-          <Text>fat:{ingredient.fat}</Text>
-          <Text>fiber:{ingredient.fiber}</Text>
-          <Text>protein:{ingredient.protein}</Text>
-          <Text>salt:{ingredient.salt}</Text>
-          <Text>Simple sugars:{ingredient.simpleSugars}</Text>
-          <Text>Total sugars:{ingredient.totalSugars}</Text>
-          <Button onClick={() => navigate("/ingredients")}>
+          <Image
+            width="10vw"
+            height="20vh"
+            borderRadius="10%"
+            src={ingredient.image}
+            alt="imagen de ingrediente"
+          />
+          <Text>fat: {ingredient.fat}</Text>
+          <Text>fiber: {ingredient.fiber}</Text>
+          <Text>protein: {ingredient.protein}</Text>
+          <Text>salt: {ingredient.salt}</Text>
+          <Text>Simple sugars: {ingredient.simpleSugars}</Text>
+          <Text>Total sugars: {ingredient.totalSugars}</Text>
+          <Button onClick={() => navigate("/ingredients")} bgColor="teal">
             Back to ingredients
           </Button>
         </>

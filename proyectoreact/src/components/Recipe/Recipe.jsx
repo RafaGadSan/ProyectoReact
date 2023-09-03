@@ -30,19 +30,39 @@ export const Recipe = () => {
   }, [recipe, setIngredients]);
 
   return (
-    <VStack>
+    <VStack
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      border="1px"
+      bgColor="#ff8243"
+      borderRadius="10%"
+      gap="5px"
+      paddingY="5px"
+      height="50vh"
+      width="40vw"
+    >
       {recipe && (
         <>
-          <Image width="100px" src={recipe.image} alt="imagen de recipe" />
-          <Text>Name:{recipe.name}</Text>
-          <Text>Preparation time:{recipe.preparationTime}</Text>
+          <Image
+            width="15vw"
+            height="20vh"
+            src={recipe.image}
+            alt="imagen de recipe"
+            borderRadius="10%"
+          />
+          <Text fontSize="2xl">Name: {recipe.name}</Text>
+          <Text>Preparation time: {recipe.preparationTime}</Text>
           <Text>Recipe Steps: {recipe.steps}</Text>
-          <Text>Ingredients:</Text>
+          <Text>Ingredients: </Text>
           {/*mapeamos los ingredientes para pintarlos en las recetas (si tienen) */}
           {ingredients &&
             ingredients.map((ing) => <p key={ing._id}>{ing.name}</p>)}
 
-          <Button onClick={() => navigate("/recipes")}>Back to recipes</Button>
+          <Button onClick={() => navigate("/recipes")} bgColor="teal">
+            Back to recipes
+          </Button>
         </>
       )}
     </VStack>

@@ -68,16 +68,17 @@ export const FormProfile = () => {
     <>
       <Box
         display="flex"
+        flexWrap="wrap"
         justifyContent="center"
-        flexDirection="row"
+        gap="10px"
         alignItems="center"
       >
-        <Box>
+        <Box paddingInline="10px">
           <FigureUser user={user} />
         </Box>
         <Box>
           <Stack>
-            <Text>Change your data profile</Text>
+            <Text as="b">Change your data profile</Text>
             <Text>Please, enter your new data profile</Text>
           </Stack>
           <form onSubmit={handleSubmit(formSubmit)}>
@@ -96,6 +97,7 @@ export const FormProfile = () => {
               type="submit"
               disabled={send}
               style={{ background: send ? "#49c1a388" : "#49c1a2" }}
+              marginTop="5px"
             >
               Change data profile
             </Button>
