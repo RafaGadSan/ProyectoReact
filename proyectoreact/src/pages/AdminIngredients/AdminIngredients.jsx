@@ -1,18 +1,15 @@
-import { Button, Flex, Text, FormLabel, HStack, Input } from "@chakra-ui/react";
+import { Button, Flex, FormLabel, HStack, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import {
   deleteIngredientService,
   getAllIngredients,
   updateIngredient,
 } from "../../services/ingredient.service";
-import { useForm } from "react-hook-form";
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 export const AdminIngredients = () => {
   const [ingredientsList, setIngredientsList] = useState(null);
-  const { register, handleSubmit } = useForm();
+
   const [send, setSend] = useState(null);
-  const [res, setRes] = useState(null);
-  // const [inputValues, setInputValues] = useState([]); // Objeto para almacenar los valores de los inputs
 
   useEffect(() => {
     (async () => {
@@ -36,13 +33,6 @@ export const AdminIngredients = () => {
       confirmButtonText: "YES",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        //const inputFile = document.getElementById("file-upload").files;
-
-        // if (inputFile.length !== 0) {
-        // const customFormData = {
-        //   ...formData,
-        // };
-
         const ingredient = ingredientsList.find((ing) => ing._id === id);
 
         const customFormData = {
@@ -56,30 +46,34 @@ export const AdminIngredients = () => {
         };
 
         setSend(true);
-        setRes(await updateIngredient(customFormData, id));
-        setSend(false);
-      } //else {
-      //const customFormData = {
-      //    ...formData,
-      //  };
-      //  setSend(true);
-      //  setRes(await updateIngredient(customFormData, id));
-      // setSend(false);
-      //   }
-      // }
+
+        try {
+          const res = await updateIngredient(customFormData, id);
+
+          if (res.status === 200)
+            Swal.fire({
+              title: `Update Ok`,
+              icon: "info",
+              confirmButtonColor: "rgb(73, 193, 162)",
+              confirmButtonText: "YES",
+            });
+
+          setSend(false);
+        } catch (error) {
+          Swal.fire({
+            title: `Update not Ok`,
+            icon: "error",
+            confirmButtonColor: "rgb(73, 193, 162)",
+            confirmButtonText: "YES",
+          });
+
+          setSend(false);
+        }
+      }
     });
   };
 
   const handleInputChange = (e, ingredientId) => {
-    // const { name, value } = e.target;
-    // setInputValues((prevInputValues) => ({
-    //   ...prevInputValues,
-    //   [ingredientId]: {
-    //     ...prevInputValues[ingredientId],
-    //     [name]: value,
-    //   },
-    // }));
-
     const ingredientsCopy = [...ingredientsList];
 
     ingredientsCopy.forEach((ing) => {
@@ -118,7 +112,6 @@ export const AdminIngredients = () => {
                   name="name"
                   defaultValue={ingredient.name}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  // {...register(`name${index}`)}
                 />
                 <FormLabel>Simple sugars:</FormLabel>
                 <Input
@@ -128,7 +121,6 @@ export const AdminIngredients = () => {
                   name="simpleSugars"
                   defaultValue={ingredient.simpleSugars}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  // {...register(`simpleSugars${index}`)}
                 />
                 <FormLabel>Total sugars</FormLabel>
                 <Input
@@ -138,7 +130,6 @@ export const AdminIngredients = () => {
                   name="totalSugars"
                   defaultValue={ingredient.totalSugars}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  // {...register(`totalSugars${index}`)}
                 />
                 <FormLabel>Fat</FormLabel>
                 <Input
@@ -148,7 +139,6 @@ export const AdminIngredients = () => {
                   name="fat"
                   defaultValue={ingredient.fat}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  // {...register(`fat${index}`)}
                 />
                 <FormLabel>Protein</FormLabel>
                 <Input
@@ -158,7 +148,6 @@ export const AdminIngredients = () => {
                   name="protein"
                   defaultValue={ingredient.protein}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  // {...register(`protein${index}`)}
                 />
                 <FormLabel>Salt</FormLabel>
                 <Input
@@ -168,7 +157,6 @@ export const AdminIngredients = () => {
                   name="salt"
                   defaultValue={ingredient.salt}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  // {...register(`salt${index}`)}
                 />
                 <FormLabel>Fiber</FormLabel>
                 <Input
@@ -178,7 +166,6 @@ export const AdminIngredients = () => {
                   name="fiber"
                   defaultValue={ingredient.fiber}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  // {...register(`fiber${index}`)}
                 />
                 <Button>Photo</Button>
                 <Button type="submit" disabled={send}>

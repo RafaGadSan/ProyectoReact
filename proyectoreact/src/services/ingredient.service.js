@@ -24,7 +24,9 @@ export const updateIngredient = async (formData, id) => {
     },
   })
     .then((res) => res)
-    .catch((error) => error);
+    .catch((error) => {
+      throw new Error(error);
+    });
 };
 
 //!Delete ingredient
