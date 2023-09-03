@@ -73,7 +73,7 @@ export const AdminIngredients = () => {
         gap="5px"
       >
         {ingredientsList &&
-          ingredientsList.map((ingredient) => (
+          ingredientsList.map((ingredient, index) => (
             <form
               onSubmit={handleSubmit((data) =>
                 formSubmit(data, ingredient._id)
@@ -91,7 +91,7 @@ export const AdminIngredients = () => {
                   name="name"
                   value={inputValues[ingredient._id]?.name || ingredient.name}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register("name")}
+                  {...register(`name${index}`)}
                 />
                 <FormLabel>Simple sugars:</FormLabel>
                 <Input
@@ -104,7 +104,7 @@ export const AdminIngredients = () => {
                     ingredient.simpleSugars
                   }
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register("simpleSugars")}
+                  {...register(`simpleSugars${index}`)}
                 />
                 <FormLabel>Total sugars</FormLabel>
                 <Input
@@ -117,7 +117,7 @@ export const AdminIngredients = () => {
                     ingredient.totalSugars
                   }
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register("totalSugars")}
+                  {...register(`totalSugars${index}`)}
                 />
                 <FormLabel>Fat</FormLabel>
                 <Input
@@ -127,7 +127,7 @@ export const AdminIngredients = () => {
                   name="fat"
                   value={inputValues[ingredient._id]?.fat || ingredient.fat}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register("fat")}
+                  {...register(`fat${index}`)}
                 />
                 <FormLabel>Protein</FormLabel>
                 <Input
@@ -139,7 +139,7 @@ export const AdminIngredients = () => {
                     inputValues[ingredient._id]?.protein || ingredient.protein
                   }
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register("protein")}
+                  {...register(`protein${index}`)}
                 />
                 <FormLabel>Salt</FormLabel>
                 <Input
@@ -149,7 +149,7 @@ export const AdminIngredients = () => {
                   name="salt"
                   value={inputValues[ingredient._id]?.salt || ingredient.salt}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register("salt")}
+                  {...register(`salt${index}`)}
                 />
                 <FormLabel>Fiber</FormLabel>
                 <Input
@@ -159,7 +159,7 @@ export const AdminIngredients = () => {
                   name="fiber"
                   value={inputValues[ingredient._id]?.fiber || ingredient.fiber}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register("fiber")}
+                  {...register(`fiber${index}`)}
                 />
                 <Button>Photo</Button>
                 <Button type="submit" disabled={send}>
