@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useAuth } from "../../context/authContext";
-import { loginUserService } from "../../services/user.service";
-import { useLoginError } from "../../hooks/useLoginError";
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import { useAuth } from "../../context/authContext"
+import { loginUserService } from "../../services/user.service"
+import { useLoginError } from "../../hooks/useLoginError"
+import { Navigate } from "react-router-dom"
 import {
   Box,
   Button,
@@ -13,45 +13,45 @@ import {
   Input,
   Link as ChakraLink,
   Text,
-} from "@chakra-ui/react";
-import { Link as ReactRouterLink } from "react-router-dom";
+} from "@chakra-ui/react"
+import { Link as ReactRouterLink } from "react-router-dom"
 
 export const Login = () => {
-  const { register, handleSubmit } = useForm();
-  const [res, setRes] = useState({}); //Estado para recibir y settear la respuesta
-  const [send, setSend] = useState(false); //Estado para saber y setear el envio
-  const [loginOk, setLoginOk] = useState(false); //Estado para saber que el login se ha hecho correctamente
-  const { userLogin, setUser } = useAuth(); // Autorizacion del contexto
+  const { register, handleSubmit } = useForm()
+  const [res, setRes] = useState({}) //Estado para recibir y settear la respuesta
+  const [send, setSend] = useState(false) //Estado para saber y setear el envio
+  const [loginOk, setLoginOk] = useState(false) //Estado para saber que el login se ha hecho correctamente
+  const { userLogin, setUser } = useAuth() // Autorizacion del contexto
 
   //!--------------
 
   const formSubmit = async (formData) => {
-    setSend(true); //seteamos el envio de la funcion
-    setRes(await loginUserService(formData)); // seteamos la respuesta del servicio con la data del formulario
-    setSend(false); // reseteamos el estado de la funcion
-  };
+    setSend(true) //seteamos el envio de la funcion
+    setRes(await loginUserService(formData)) // seteamos la respuesta del servicio con la data del formulario
+    setSend(false) // reseteamos el estado de la funcion
+  }
 
   //!-------------
   useEffect(() => {
     //useEffect para gestionar los errores
-    console.group(res);
-    useLoginError(res, setRes, userLogin, setLoginOk); //parametros que geteamos y seteamos en el hook
-  }, [res]); // en el array de dependencias, el parametro que "hace" que se renderice el useeffect
+    console.group(res)
+    useLoginError(res, setRes, userLogin, setLoginOk) //parametros que geteamos y seteamos en el hook
+  }, [res]) // en el array de dependencias, el parametro que "hace" que se renderice el useeffect
 
   useEffect(() => {
     //useEffect por si hay algun usuario (que no deberia antes de hacer el login), borrarlo haciendo reseteo del user
-    setUser(() => null);
-    localStorage.removeItem("user");
-  }, []);
+    setUser(() => null)
+    localStorage.removeItem("user")
+  }, [])
 
   //!---------
 
   if (loginOk) {
     if (res.data.user.check == false) {
       //en caso de loggearse bien pero sin haber hecho el checkeo del confirmationCode
-      return <Navigate to="/verifyCode" />; // nos redirige a la verificacion del codigo
+      return <Navigate to="/verifyCode" /> // nos redirige a la verificacion del codigo
     } else {
-      return <Navigate to="/dashboard" />; // nos redirige a la dashboard porque el codeConfirmation esta ok
+      return <Navigate to="/dashboard" /> // nos redirige a la dashboard porque el codeConfirmation esta ok
     }
   }
   return (
@@ -67,10 +67,12 @@ export const Login = () => {
         background="#ff8243"
         border="1px yellow"
         borderRadius="10"
-        boxShadow='dark-lg'
+        boxShadow="dark-lg"
       >
         <VStack>
-          <Text as="b" fontSize="4xl">Sign in</Text>
+          <Text as="b" fontSize="4xl">
+            Sign in
+          </Text>
           <Text>We are happy to see you again</Text>
         </VStack>
         <form onSubmit={handleSubmit(formSubmit)}>
@@ -99,7 +101,11 @@ export const Login = () => {
             </Button>
             <Text>
               Have you forgotten the password?
-              <ChakraLink as={ReactRouterLink} to="/forgotpassword" textColor="teal">
+              <ChakraLink
+                as={ReactRouterLink}
+                to="/forgotpassword"
+                textColor="teal"
+              >
                 {" "}
                 Change password
               </ChakraLink>
@@ -108,5 +114,5 @@ export const Login = () => {
         </form>
       </Box>
     </>
-  );
-};
+  )
+}

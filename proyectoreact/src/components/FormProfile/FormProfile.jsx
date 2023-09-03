@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
+import React, { useEffect, useState } from "react"
+import { useAuth } from "../../context/authContext"
 import {
   Box,
   Button,
@@ -8,23 +8,23 @@ import {
   Input,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { FigureUser } from "../FigureUser/FigureUser";
-import { Uploadfile } from "../UploadFile/UploadFile";
-import { useForm } from "react-hook-form";
-import { useUpdateError } from "../../hooks/useUpdateError";
-import Swal from "sweetalert2/dist/sweetalert2.all.js";
-import { updateUser } from "../../services/user.service";
+} from "@chakra-ui/react"
+import { FigureUser } from "../FigureUser/FigureUser"
+import { Uploadfile } from "../UploadFile/UploadFile"
+import { useForm } from "react-hook-form"
+import { useUpdateError } from "../../hooks/useUpdateError"
+import Swal from "sweetalert2/dist/sweetalert2.all.js"
+import { updateUser } from "../../services/user.service"
 
 export const FormProfile = () => {
-  const { user, setUser, logout } = useAuth(); // destructuring de lo que necesitamos del context
-  const { register, handleSubmit } = useForm();
-  const [res, setRes] = useState();
-  const [send, setSend] = useState(false);
+  const { user, setUser, logout } = useAuth() // destructuring de lo que necesitamos del context
+  const { register, handleSubmit } = useForm()
+  const [res, setRes] = useState()
+  const [send, setSend] = useState(false)
 
   const defauldData = {
     name: user?.user,
-  };
+  }
 
   //!----------- cuestionario
 
@@ -38,32 +38,32 @@ export const FormProfile = () => {
       confirmButtonText: "YES",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const inputFile = document.getElementById("file-upload").files;
+        const inputFile = document.getElementById("file-upload").files
 
         if (inputFile.length != 0) {
           const customFormData = {
             ...formData,
             image: inputFile[0],
-          };
+          }
 
-          setSend(true);
-          setRes(await updateUser(customFormData));
-          setSend(false);
+          setSend(true)
+          setRes(await updateUser(customFormData))
+          setSend(false)
         } else {
           const customFormData = {
             ...formData,
-          };
-          setSend(true);
-          setRes(await updateUser(customFormData));
-          setSend(false);
+          }
+          setSend(true)
+          setRes(await updateUser(customFormData))
+          setSend(false)
         }
       }
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    useUpdateError(res, setRes, setUser, logout);
-  }, [res]);
+    useUpdateError(res, setRes, setUser, logout)
+  }, [res])
   return (
     <>
       <Box
@@ -105,5 +105,5 @@ export const FormProfile = () => {
         </Box>
       </Box>
     </>
-  );
-};
+  )
+}

@@ -1,19 +1,19 @@
-import { updateToken } from "../util/updateToken";
-import { APIUser } from "./service.config";
+import { updateToken } from "../util/updateToken"
+import { APIUser } from "./service.config"
 
 //! Obtener todos los ingredientes
 export const getAllIngredients = async () => {
   return APIUser.get("/ingredients/")
     .then((res) => res) //promesa para gestionar la asincronia.
-    .catch((error) => error);
-};
+    .catch((error) => error)
+}
 
 //! Ingredientes por ID
 export const getIngredientById = async (id) => {
   return APIUser.get(`/ingredients/${id}`)
     .then((res) => res) //promesa para gestionar la asincronia.
-    .catch((error) => error);
-};
+    .catch((error) => error)
+}
 
 //!Uptade ingredient
 export const updateIngredient = async (formData, id) => {
@@ -25,9 +25,9 @@ export const updateIngredient = async (formData, id) => {
   })
     .then((res) => res)
     .catch((error) => {
-      throw new Error(error);
-    });
-};
+      throw new Error(error)
+    })
+}
 
 //!Delete ingredient
 export const deleteIngredientService = async (id) => {
@@ -35,5 +35,5 @@ export const deleteIngredientService = async (id) => {
     headers: { Authorization: `Bearer ${updateToken()}` },
   })
     .then((res) => res)
-    .catch((error) => error);
-};
+    .catch((error) => error)
+}

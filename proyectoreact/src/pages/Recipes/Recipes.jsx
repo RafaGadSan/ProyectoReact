@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import { getAllRecipes } from "../../services/recipe.service";
-import { Flex, Box, Image, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { getAllRecipes } from "../../services/recipe.service"
+import { Flex, Box, Image, Text } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 export const Recipes = () => {
-  const [recipesList, setRecipesList] = useState(null);
+  const [recipesList, setRecipesList] = useState(null)
 
   useEffect(() => {
-    (async () => {
-      let recipes = await getAllRecipes().then((res) => res);
+    ;(async () => {
+      let recipes = await getAllRecipes().then((res) => res)
 
-      setRecipesList(await recipes.data.data);
-    })();
-  }, []);
+      setRecipesList(await recipes.data.data)
+    })()
+  }, [])
 
   return (
     <>
@@ -58,5 +58,5 @@ export const Recipes = () => {
           ))}
       </Flex>
     </>
-  );
-};
+  )
+}

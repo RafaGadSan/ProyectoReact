@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./Register.css";
-import { useAuth } from "../../context/authContext";
-import { useForm } from "react-hook-form";
-import { registerUser } from "../../services/user.service";
-import { useRegisterError } from "../../hooks/useRegisterError";
-import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import "./Register.css"
+import { useAuth } from "../../context/authContext"
+import { useForm } from "react-hook-form"
+import { registerUser } from "../../services/user.service"
+import { useRegisterError } from "../../hooks/useRegisterError"
+import { Navigate } from "react-router-dom"
 import {
   Box,
   Button,
@@ -13,26 +13,26 @@ import {
   FormLabel,
   Input,
   Text,
-} from "@chakra-ui/react";
-import { Uploadfile } from "../../components/UploadFile/UploadFile";
+} from "@chakra-ui/react"
+import { Uploadfile } from "../../components/UploadFile/UploadFile"
 
 export const Register = () => {
-  const { setUserComplete, bridgeData } = useAuth();
+  const { setUserComplete, bridgeData } = useAuth()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const [res, setRes] = useState({}); // estado para recibir y setear la respuesta
-  const [send, setSend] = useState(false); // estado para saber si se ha enviado
-  const [okRegister, setOkRegister] = useState(false); //estado para saber si el registro se ha realizado correctamente
-  const [gender, setGender] = useState(null); //estado para setear con los buttons de genero
+  } = useForm()
+  const [res, setRes] = useState({}) // estado para recibir y setear la respuesta
+  const [send, setSend] = useState(false) // estado para saber si se ha enviado
+  const [okRegister, setOkRegister] = useState(false) //estado para saber si el registro se ha realizado correctamente
+  const [gender, setGender] = useState(null) //estado para setear con los buttons de genero
 
   const formSubmit = async (formData) => {
-    console.log("formData", formData);
+    console.log("formData", formData)
     //llamada asyncrona para obtener la data del formulario
-    const inputFile = document.getElementById("file-upload").files; // para obtener la imagen que nos ponga el usuario
-    console.log(inputFile);
+    const inputFile = document.getElementById("file-upload").files // para obtener la imagen que nos ponga el usuario
+    console.log(inputFile)
     if (inputFile.length !== 0) {
       //si hay algun archivo en el inputFile
       const customFormData = {
@@ -41,11 +41,11 @@ export const Register = () => {
         role: "cliente",
         gender: gender,
         image: inputFile[0],
-      };
+      }
 
-      setSend(true); // seteamos el envio de la respuesta a true
-      setRes(await registerUser(customFormData)); // seteamos el registro del usuario con la informacion nueva
-      setSend(false); // reseteamos el estado (false)
+      setSend(true) // seteamos el envio de la respuesta a true
+      setRes(await registerUser(customFormData)) // seteamos el registro del usuario con la informacion nueva
+      setSend(false) // reseteamos el estado (false)
     } else {
       // en el caso que el usuario no hayapuesto ninguna imagen
       const customFormData = {
@@ -53,30 +53,30 @@ export const Register = () => {
         ...formData,
         role: "cliente",
         gender: gender,
-      };
+      }
 
-      setSend(true); // seteamos el envio de la respuesta a true
-      setRes(await registerUser(customFormData)); //actualizamos el registro del usuario
-      setSend(false); // reseteamos el estado del envio de la respuesta (false)
+      setSend(true) // seteamos el envio de la respuesta a true
+      setRes(await registerUser(customFormData)) //actualizamos el registro del usuario
+      setSend(false) // reseteamos el estado del envio de la respuesta (false)
     }
-  };
+  }
 
   //!-------------Para gestionar los estados de la data y sus errores
 
   useEffect(() => {
     //gestionamos la res a través de un hook (useRegisterError)
-    console.log("res", res);
-    useRegisterError(res, setOkRegister, setRes, setUserComplete); // parametros que gestionará el hook
-    if (res?.status === 200) bridgeData("USERCOMPLETE"); //si la res es 200 (ok) gestionamos la asyncronia con el puente
-  }, [res]); // en el array de dependencias introducimos el parametro de cuando queremos que se renderice
+    console.log("res", res)
+    useRegisterError(res, setOkRegister, setRes, setUserComplete) // parametros que gestionará el hook
+    if (res?.status === 200) bridgeData("USERCOMPLETE") //si la res es 200 (ok) gestionamos la asyncronia con el puente
+  }, [res]) // en el array de dependencias introducimos el parametro de cuando queremos que se renderice
 
   //!------ Estados de navegacion
 
   if (okRegister) {
     // si el registro esta bien
-    console.log("res", res); // mostramos la respuesta
-    console.log("registro correcto, ya puedes navegar");
-    return <Navigate to="/verifyCode" />; // nos redirige a la pagina del checkCode
+    console.log("res", res) // mostramos la respuesta
+    console.log("registro correcto, ya puedes navegar")
+    return <Navigate to="/verifyCode" /> // nos redirige a la pagina del checkCode
   }
   //pintamos el formulario
   return (
@@ -89,7 +89,7 @@ export const Register = () => {
         background="#ff8243"
         border="1px yellow"
         borderRadius={10}
-        boxShadow='dark-lg'
+        boxShadow="dark-lg"
       >
         <Text fontSize="3xl" as="b">
           Sign in
@@ -142,7 +142,7 @@ export const Register = () => {
             {/*el onclick setea el estado de gender  */}
             <Button
               onClick={() => {
-                setGender("hombre");
+                setGender("hombre")
               }}
               _focus={{
                 boxShadow:
@@ -154,7 +154,7 @@ export const Register = () => {
             </Button>
             <Button
               onClick={() => {
-                setGender("mujer");
+                setGender("mujer")
               }}
               _focus={{
                 boxShadow:
@@ -172,5 +172,5 @@ export const Register = () => {
         </form>
       </Box>
     </>
-  );
-};
+  )
+}

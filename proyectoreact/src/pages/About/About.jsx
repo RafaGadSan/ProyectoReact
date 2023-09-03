@@ -1,5 +1,5 @@
-import React from "react";
-import { Center, Flex, Stack, Text } from "@chakra-ui/react";
+import React from "react"
+import { Center, Flex, Stack, Text } from "@chakra-ui/react"
 
 const About = () => {
   return (
@@ -11,7 +11,7 @@ const About = () => {
         </Stack>
       </Center>
     </Flex>
-  );
-};
+  )
+}
 
-export default About;
+export default About

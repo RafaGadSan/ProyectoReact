@@ -1,5 +1,5 @@
-import Swal from "sweetalert2/dist/sweetalert2.all";
-import { deleteUserService } from "../services/user.service";
+import Swal from "sweetalert2/dist/sweetalert2.all"
+import { deleteUserService } from "../services/user.service"
 
 export const useDeleteUser = (setUser) => {
   Swal.fire({
@@ -11,7 +11,7 @@ export const useDeleteUser = (setUser) => {
     confirmButtonText: "YES",
   }).then(async (result) => {
     if (result.isConfirmed) {
-      const res = await deleteUserService();
+      const res = await deleteUserService()
 
       switch (res.status) {
         case 200:
@@ -21,10 +21,10 @@ export const useDeleteUser = (setUser) => {
             text: "See you soon",
             showConfirmButton: false,
             timer: 1500,
-          });
-          setUser(() => null);
-          localStorage.removeItem("user");
-          break;
+          })
+          setUser(() => null)
+          localStorage.removeItem("user")
+          break
         default:
           Swal.fire({
             icon: "error",
@@ -32,9 +32,9 @@ export const useDeleteUser = (setUser) => {
             text: "Please, try again",
             showConfirmButton: false,
             timer: 1500,
-          });
-          break;
+          })
+          break
       }
     }
-  });
-};
+  })
+}

@@ -1,27 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import { RouterProvider } from "react-router-dom";
-import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/Home/Home.jsx";
-import About from "./pages/About/About.jsx";
-import { Register } from "./pages/Register/Register.jsx";
-import { CheckCode } from "./pages/CheckCode/CheckCode.jsx";
-import { Login } from "./pages/Login/Login.jsx";
-import { Profile } from "./pages/Profile/Profile.jsx";
-import { Dashboard } from "./pages/Dashboard/Dashboard.jsx";
-import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword.jsx";
-import { Ingredients } from "./pages/Ingredients/Ingredients.jsx";
-import { Protected } from "./components/Protected/Protected.jsx";
-import { ProtectedCheckChildren } from "./components/ProtectedCheckChildren/ProtectedCheckChildren.jsx";
-import { Recipes } from "./pages/Recipes/Recipes.jsx";
-import { Ingredient } from "./components/Ingredient/Ingredient.jsx";
-import { Recipe } from "./components/Recipe/Recipe.jsx";
-import { AdminRecipes } from "./pages/AdminRecipes/AdminRecipes.jsx";
-import { AdminIngredients } from "./pages/AdminIngredients/AdminIngredients.jsx";
-import { ProtectedRoleRecipe } from "./components/ProtectecRoleRecipe/ProtectedRoleRecipe.jsx";
-import { ProtectedRoleIngredient } from "./components/ProtectedRoleIngredient/ProtectedRoleIngredient.jsx";
+import React from "react"
+import ReactDOM from "react-dom/client"
+import App from "./App.jsx"
+import "./index.css"
+import { RouterProvider } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
+import Home from "./pages/Home/Home.jsx"
+import About from "./pages/About/About.jsx"
+import { Register } from "./pages/Register/Register.jsx"
+import { CheckCode } from "./pages/CheckCode/CheckCode.jsx"
+import { Login } from "./pages/Login/Login.jsx"
+import { Profile } from "./pages/Profile/Profile.jsx"
+import { Dashboard } from "./pages/Dashboard/Dashboard.jsx"
+import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword.jsx"
+import { Ingredients } from "./pages/Ingredients/Ingredients.jsx"
+import { Protected } from "./components/Protected/Protected.jsx"
+import { ProtectedCheckChildren } from "./components/ProtectedCheckChildren/ProtectedCheckChildren.jsx"
+import { Recipes } from "./pages/Recipes/Recipes.jsx"
+import { Ingredient } from "./components/Ingredient/Ingredient.jsx"
+import { Recipe } from "./components/Recipe/Recipe.jsx"
+import { AdminRecipes } from "./pages/AdminRecipes/AdminRecipes.jsx"
+import { AdminIngredients } from "./pages/AdminIngredients/AdminIngredients.jsx"
+import { ProtectedRoleRecipe } from "./components/ProtectecRoleRecipe/ProtectedRoleRecipe.jsx"
+import { ProtectedRoleIngredient } from "./components/ProtectedRoleIngredient/ProtectedRoleIngredient.jsx"
 
 export const router = createBrowserRouter([
   {
@@ -110,10 +110,10 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
-);
+  </React.StrictMode>,
+)

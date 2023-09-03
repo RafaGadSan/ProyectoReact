@@ -1,33 +1,33 @@
-import { Button, Image, Text, VStack, Box, Link } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { getIngredientById } from "../../services/ingredient.service";
+import { Button, Image, Text, VStack, Box, Link } from "@chakra-ui/react"
+import React, { useEffect, useState } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
+import { getIngredientById } from "../../services/ingredient.service"
 
 //hacer servicio
 
 export const Recipe = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const location = useLocation(); // usamos uselocaion para traernos la info de ingredients y ahorrar una llamada al servicio
+  const location = useLocation() // usamos uselocaion para traernos la info de ingredients y ahorrar una llamada al servicio
 
-  const [recipe, setRecipe] = useState(location.state);
-  const [ingredients, setIngredients] = useState(null);
+  const [recipe, setRecipe] = useState(location.state)
+  const [ingredients, setIngredients] = useState(null)
 
   useEffect(() => {
     const getData = async () => {
       //!1.creas la asincronía dentro de el useEffect
-      const tempIngredients = [];
+      const tempIngredients = []
 
       for (const ing of recipe.ingredients) {
-        const data = await getIngredientById(ing); //!2.esperas a que se rellenen los ingredientes
-        tempIngredients.push(data.data.data);
+        const data = await getIngredientById(ing) //!2.esperas a que se rellenen los ingredientes
+        tempIngredients.push(data.data.data)
       }
 
-      setIngredients(tempIngredients); //!3.una vez lleno, lo seteamos.
-    };
+      setIngredients(tempIngredients) //!3.una vez lleno, lo seteamos.
+    }
 
-    getData();
-  }, [recipe, setIngredients]);
+    getData()
+  }, [recipe, setIngredients])
 
   return (
     <VStack
@@ -66,5 +66,5 @@ export const Recipe = () => {
         </>
       )}
     </VStack>
-  );
-};
+  )
+}

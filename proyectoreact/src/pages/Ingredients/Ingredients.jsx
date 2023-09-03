@@ -1,27 +1,45 @@
-import { useEffect, useState } from "react";
-import { getAllIngredients } from "../../services/ingredient.service";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import { Ingredient } from "../../components/Ingredient/Ingredient";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { getAllIngredients } from "../../services/ingredient.service"
+import { Box, Flex, Image, Text } from "@chakra-ui/react"
+import { Ingredient } from "../../components/Ingredient/Ingredient"
+import { Link } from "react-router-dom"
 
 export const Ingredients = () => {
-  const [ingredientsList, setIngredientsList] = useState(null); // Creamos un estado paragettear y settear la informacion, la inicializamos con u array de objetos vacia
+  const [ingredientsList, setIngredientsList] = useState(null) // Creamos un estado paragettear y settear la informacion, la inicializamos con u array de objetos vacia
   useEffect(() => {
     //UseEffect para setear la informacion, es asyncrona porque nos traemos la info del back
-    (async () => {
-      let ingredients = await getAllIngredients().then((res) => res); //Creamos la funcion que almacenara la info
+    ;(async () => {
+      let ingredients = await getAllIngredients().then((res) => res) //Creamos la funcion que almacenara la info
 
-      setIngredientsList(await ingredients.data.data); //setteamos la info que nos trae la respuesta
-    })();
-  }, []);
+      setIngredientsList(await ingredients.data.data) //setteamos la info que nos trae la respuesta
+    })()
+  }, [])
 
   return (
     <>
-      <Flex display="flex" justify="center" alignItems="center" dir="column" wrap="wrap" gap="5px">
+      <Flex
+        display="flex"
+        justify="center"
+        alignItems="center"
+        dir="column"
+        wrap="wrap"
+        gap="5px"
+      >
         {/*mapeamos la lista de ingredientes para obtener cada uno de ellos */}
         {ingredientsList &&
           ingredientsList.map((ingredient) => (
-            <Box key={ingredient._id} display="flex" justifyContent="center" alignItems="center" flexDirection="column" border="1px" bgColor="#ff8243" borderRadius="10%" gap="2px" p="8px">
+            <Box
+              key={ingredient._id}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              flexDirection="column"
+              border="1px"
+              bgColor="#ff8243"
+              borderRadius="10%"
+              gap="2px"
+              p="8px"
+            >
               <Link
                 to={`/ingredients/ingredient/${ingredient.name}`}
                 state={ingredient}
@@ -33,13 +51,15 @@ export const Ingredients = () => {
                   alt="imagen del ingrediente"
                 />
               </Link>
-              <Text as="cite" columnGap="3px">Name:{ingredient.name}</Text>
+              <Text as="cite" columnGap="3px">
+                Name:{ingredient.name}
+              </Text>
             </Box>
           ))}
       </Flex>
     </>
-  );
-};
+  )
+}
 
 /**
  * 

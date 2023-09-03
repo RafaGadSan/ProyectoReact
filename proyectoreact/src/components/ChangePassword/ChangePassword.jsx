@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
-import Swal from "sweetalert2/dist/sweetalert2.all";
-import { changePasswordUserToken } from "../../services/user.service";
-import { useChangePasswordError } from "../../hooks/useChangePasswordError";
+import React, { useEffect, useState } from "react"
+import { useAuth } from "../../context/authContext"
+import Swal from "sweetalert2/dist/sweetalert2.all"
+import { changePasswordUserToken } from "../../services/user.service"
+import { useChangePasswordError } from "../../hooks/useChangePasswordError"
 import {
   Box,
   Button,
@@ -11,19 +11,19 @@ import {
   Input,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+} from "@chakra-ui/react"
+import { useForm } from "react-hook-form"
 
 export const ChangePassword = () => {
-  const { setUser } = useAuth(); // destructuring para setear el usuario autenticado
-  const { handleSubmit, register } = useForm();
-  const [res, setRes] = useState({});
-  const [send, setSend] = useState(false);
+  const { setUser } = useAuth() // destructuring para setear el usuario autenticado
+  const { handleSubmit, register } = useForm()
+  const [res, setRes] = useState({})
+  const [send, setSend] = useState(false)
 
   //!------
 
   const formSubmit = (formData) => {
-    const { password, newPassword, confirmPassword } = formData; // destructuring de la data del usuario para coger la password, la nueva pasword y la confirmacion de la nueva password
+    const { password, newPassword, confirmPassword } = formData // destructuring de la data del usuario para coger la password, la nueva pasword y la confirmacion de la nueva password
 
     if (newPassword == confirmPassword) {
       //si la newpassword y su confirmacion son iguales, damos feedbck al user para asegurar que lo quiere cambiar
@@ -37,27 +37,27 @@ export const ChangePassword = () => {
       }).then(async (result) => {
         //gestion de la asincronia con un .then
         if (result.isConfirmed) {
-          setSend(true);
-          setRes(await changePasswordUserToken({ password, newPassword })); //seteamos la respuesta con la info del servicio
-          setSend(false);
+          setSend(true)
+          setRes(await changePasswordUserToken({ password, newPassword })) //seteamos la respuesta con la info del servicio
+          setSend(false)
         }
-      });
+      })
     } else {
       Swal.fire({
         icon: "error",
         title: "New Password don't match with confirmation password",
         showConfirmButton: false,
         timer: 2500,
-      });
+      })
     }
-  };
+  }
 
   //!---------- useEffect para gestionar los errores
 
   useEffect(() => {
-    console.log(res);
-    useChangePasswordError(res, setRes, setUser);
-  }, [res]); // en el array de dependencias ponemos cuando queremos que se renderice, en este caso con el cambio de la res
+    console.log(res)
+    useChangePasswordError(res, setRes, setUser)
+  }, [res]) // en el array de dependencias ponemos cuando queremos que se renderice, en este caso con el cambio de la res
 
   //!--------
   return (
@@ -108,5 +108,5 @@ export const ChangePassword = () => {
         </Button>
       </form>
     </Box>
-  );
-};
+  )
+}

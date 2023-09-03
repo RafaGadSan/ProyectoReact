@@ -1,4 +1,4 @@
-import "./FigureUser.css";
+import "./FigureUser.css"
 
 export const FigureUser = (user) => {
   return (
@@ -6,5 +6,5 @@ export const FigureUser = (user) => {
       <img src={user.user.image} alt="user image" className="imageUser" />
       <h4 className="emailUser">Email: {user.user.email}</h4>
     </figure>
-  );
-};
+  )
+}

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { forgotPasswordUser } from "../../services/user.service";
-import { useForgotPasswordError } from "../../hooks/useForgotPasswordError";
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import { forgotPasswordUser } from "../../services/user.service"
+import { useForgotPasswordError } from "../../hooks/useForgotPasswordError"
+import { Navigate } from "react-router-dom"
 import {
   Box,
   Button,
@@ -10,31 +10,31 @@ import {
   FormLabel,
   Input,
   Text,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
 export const ForgotPassword = () => {
-  const { handleSubmit, register } = useForm();
-  const [res, setRes] = useState({});
-  const [send, setSend] = useState(false);
-  const [forgotOk, setForgotOk] = useState(false);
+  const { handleSubmit, register } = useForm()
+  const [res, setRes] = useState({})
+  const [send, setSend] = useState(false)
+  const [forgotOk, setForgotOk] = useState(false)
 
   //!---------
 
   const formSubmit = async (formData) => {
-    setSend(true);
-    setRes(await forgotPasswordUser(formData));
-    setSend(false);
-  };
+    setSend(true)
+    setRes(await forgotPasswordUser(formData))
+    setSend(false)
+  }
 
   //!---------
   useEffect(() => {
-    useForgotPasswordError(res, setRes, setForgotOk);
-    console.log(res);
-  }, [res]);
+    useForgotPasswordError(res, setRes, setForgotOk)
+    console.log(res)
+  }, [res])
 
   //!--------
 
   if (forgotOk) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" />
   }
 
   return (
@@ -58,5 +58,5 @@ export const ForgotPassword = () => {
         </Box>
       </form>
     </Box>
-  );
-};
+  )
+}

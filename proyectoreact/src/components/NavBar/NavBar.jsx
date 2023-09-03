@@ -1,12 +1,10 @@
-import { Avatar, Box, Button, Flex, Spacer } from "@chakra-ui/react";
-import "./Navbar.css";
-import { NavLink } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
-import { Dashboard } from "../../pages/Dashboard/Dashboard";
-import { Profile } from "../../pages/Profile/Profile";
+import { Avatar, Box, Button, Flex, Spacer } from "@chakra-ui/react"
+import "./Navbar.css"
+import { NavLink } from "react-router-dom"
+import { useAuth } from "../../context/authContext"
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth()
 
   return (
     <nav>
@@ -86,7 +84,7 @@ const Navbar = () => {
         </Box>
       </Flex>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

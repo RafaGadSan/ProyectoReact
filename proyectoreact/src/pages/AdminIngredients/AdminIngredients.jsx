@@ -1,28 +1,28 @@
-import { Button, Flex, FormLabel, HStack, Input } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Button, Flex, FormLabel, HStack, Input } from "@chakra-ui/react"
+import React, { useEffect, useState } from "react"
 import {
   deleteIngredientService,
   getAllIngredients,
   updateIngredient,
-} from "../../services/ingredient.service";
-import Swal from "sweetalert2/dist/sweetalert2.all.js";
+} from "../../services/ingredient.service"
+import Swal from "sweetalert2/dist/sweetalert2.all.js"
 export const AdminIngredients = () => {
-  const [ingredientsList, setIngredientsList] = useState(null);
+  const [ingredientsList, setIngredientsList] = useState(null)
 
-  const [send, setSend] = useState(null);
+  const [send, setSend] = useState(null)
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       // IIFE Inmediately invoked function expression
       if (!ingredientsList) {
-        const ingredients = await getAllIngredients();
-        if (ingredients) setIngredientsList(ingredients.data.data);
+        const ingredients = await getAllIngredients()
+        if (ingredients) setIngredientsList(ingredients.data.data)
       }
-    })();
-  }, [ingredientsList]);
+    })()
+  }, [ingredientsList])
 
   const formSubmit = (e, id) => {
-    e.preventDefault(); //!para que el html no mande de forma predefinida el form
+    e.preventDefault() //!para que el html no mande de forma predefinida el form
 
     Swal.fire({
       title: `Are you sure you want to change this ingredient's data?`,
@@ -33,7 +33,7 @@ export const AdminIngredients = () => {
       confirmButtonText: "YES",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const ingredient = ingredientsList.find((ing) => ing._id === id);
+        const ingredient = ingredientsList.find((ing) => ing._id === id)
 
         const customFormData = {
           name: ingredient.name,
@@ -43,12 +43,12 @@ export const AdminIngredients = () => {
           protein: ingredient.protein,
           salt: ingredient.salt,
           fiber: ingredient.fiber,
-        };
+        }
 
-        setSend(true);
+        setSend(true)
 
         try {
-          const res = await updateIngredient(customFormData, id);
+          const res = await updateIngredient(customFormData, id)
 
           if (res.status === 200)
             Swal.fire({
@@ -56,32 +56,32 @@ export const AdminIngredients = () => {
               icon: "info",
               confirmButtonColor: "rgb(73, 193, 162)",
               confirmButtonText: "YES",
-            });
+            })
 
-          setSend(false);
+          setSend(false)
         } catch (error) {
           Swal.fire({
             title: `Update not Ok`,
             icon: "error",
             confirmButtonColor: "rgb(73, 193, 162)",
             confirmButtonText: "YES",
-          });
+          })
 
-          setSend(false);
+          setSend(false)
         }
       }
-    });
-  };
+    })
+  }
 
   const handleInputChange = (e, ingredientId) => {
-    const ingredientsCopy = [...ingredientsList];
+    const ingredientsCopy = [...ingredientsList]
 
     ingredientsCopy.forEach((ing) => {
-      if (ing._id === ingredientId) ing[e.target.name] = e.target.value;
-    });
+      if (ing._id === ingredientId) ing[e.target.name] = e.target.value
+    })
 
-    setIngredientsList(ingredientsCopy);
-  };
+    setIngredientsList(ingredientsCopy)
+  }
 
   return (
     <>
@@ -176,5 +176,5 @@ export const AdminIngredients = () => {
           ))}
       </Flex>
     </>
-  );
-};
+  )
+}

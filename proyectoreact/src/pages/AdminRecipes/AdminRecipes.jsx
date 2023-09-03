@@ -1,4 +1,4 @@
-import { Button, FormLabel, HStack, Input, Select } from "@chakra-ui/react";
+import { Button, FormLabel, HStack, Input, Select } from "@chakra-ui/react"
 
 export const AdminRecipes = () => {
   return (
@@ -16,5 +16,5 @@ export const AdminRecipes = () => {
       <Button>Photo</Button>
       <Button>Save</Button>
     </HStack>
-  );
-};
+  )
+}

@@ -1,19 +1,19 @@
-import Swal from "sweetalert2/dist/sweetalert2.all.js";
+import Swal from "sweetalert2/dist/sweetalert2.all.js"
 
 export const useRegisterError = (
   res,
   setRegisterOk,
   setRes,
-  setUserComplete
+  setUserComplete,
 ) => {
   //? si la respuesta es ok ---- > directamente esta el status en la primera clave es decir: res.status
   //? si la respuesta no esta ok--> res.response.status
   //! ------------------ 200 : todo ok
   if (res?.status == 200) {
-    console.log("entro en el if 🎉");
-    const dataToString = JSON.stringify(res);
-    localStorage.setItem("data", dataToString);
-    setRegisterOk(() => true);
+    console.log("entro en el if 🎉")
+    const dataToString = JSON.stringify(res)
+    localStorage.setItem("data", dataToString)
+    setRegisterOk(() => true)
     //setAllUser(() => res.data);
 
     Swal.fire({
@@ -21,8 +21,8 @@ export const useRegisterError = (
       title: "Welcome to my Page 💌",
       showConfirmButton: false,
       timer: 1500,
-    });
-    setRes({});
+    })
+    setRes({})
   }
 
   //! ------------------- 409: user ya registrado
@@ -34,8 +34,8 @@ export const useRegisterError = (
       text: "Please , your email is incorrect !❎",
       showConfirmButton: false,
       timer: 1500,
-    });
-    setRes({});
+    })
+    setRes({})
   }
   //! ------------------- La contraseña no esta en el formato correcto
   if (res?.response?.data?.includes("validation failed: password")) {
@@ -45,14 +45,14 @@ export const useRegisterError = (
       text: "Min 8 characters, 1 upper case, 1 lower case and a special character ❎",
       showConfirmButton: false,
       timer: 3000,
-    });
-    setRes({});
+    })
+    setRes({})
   }
 
   //! ------------------- cuando el userName ya existe
   if (
     res?.response?.data?.includes(
-      "duplicate key error collection: userProyect.users index: name_1 dup key: { name"
+      "duplicate key error collection: userProyect.users index: name_1 dup key: { name",
     )
   ) {
     Swal.fire({
@@ -61,8 +61,8 @@ export const useRegisterError = (
       text: "Sorry choose another name ❎",
       showConfirmButton: false,
       timer: 1500,
-    });
-    setRes({});
+    })
+    setRes({})
   }
 
   //! -------------------- 500 : internal server error
@@ -74,8 +74,8 @@ export const useRegisterError = (
       text: "Interval server error!❎ Please try again.",
       showConfirmButton: false,
       timer: 1500,
-    });
-    setRes({});
+    })
+    setRes({})
   }
 
   //! -------------------- 404: 'error, resend code'
@@ -89,7 +89,7 @@ export const useRegisterError = (
       text: "Register ok, error to resend code ❎",
       showConfirmButton: false,
       timer: 1500,
-    });
-    setRes({});
+    })
+    setRes({})
   }
-};
+}

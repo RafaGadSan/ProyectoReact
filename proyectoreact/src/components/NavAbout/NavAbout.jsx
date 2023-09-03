@@ -1,6 +1,6 @@
-import { Button } from "@chakra-ui/react";
-import "./NavAbout.css";
-import { NavLink } from "react-router-dom";
+import { Button } from "@chakra-ui/react"
+import "./NavAbout.css"
+import { NavLink } from "react-router-dom"
 
 const NavAbout = () => {
   return (
@@ -9,7 +9,7 @@ const NavAbout = () => {
         <Button colorScheme="teal">About</Button>
       </NavLink>
     </nav>
-  );
-};
+  )
+}
 
-export default NavAbout;
+export default NavAbout
