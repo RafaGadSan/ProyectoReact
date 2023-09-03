@@ -1,6 +1,7 @@
 import { Button, Flex, Text, FormLabel, HStack, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import {
+  deleteIngredientService,
   getAllIngredients,
   updateIngredient,
 } from "../../services/ingredient.service";
@@ -10,16 +11,22 @@ export const AdminIngredients = () => {
   const [ingredientsList, setIngredientsList] = useState(null);
   const { register, handleSubmit } = useForm();
   const [send, setSend] = useState(null);
-  const [inputValues, setInputValues] = useState({}); // Objeto para almacenar los valores de los inputs
+  const [res, setRes] = useState(null);
+  // const [inputValues, setInputValues] = useState([]); // Objeto para almacenar los valores de los inputs
 
   useEffect(() => {
     (async () => {
-      let ingredients = await getAllIngredients().then((res) => res);
-      setIngredientsList(await ingredients.data.data);
+      // IIFE Inmediately invoked function expression
+      if (!ingredientsList) {
+        const ingredients = await getAllIngredients();
+        if (ingredients) setIngredientsList(ingredients.data.data);
+      }
     })();
-  }, []);
+  }, [ingredientsList]);
 
-  const formSubmit = (formData, id) => {
+  const formSubmit = (e, id) => {
+    e.preventDefault(); //!para que el html no mande de forma predefinida el form
+
     Swal.fire({
       title: `Are you sure you want to change this ingredient's data?`,
       icon: "warning",
@@ -29,37 +36,57 @@ export const AdminIngredients = () => {
       confirmButtonText: "YES",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const inputFile = document.getElementById("file-upload").files;
+        //const inputFile = document.getElementById("file-upload").files;
 
-        if (inputFile.length !== 0) {
-          const customFormData = {
-            ...formData,
-          };
+        // if (inputFile.length !== 0) {
+        // const customFormData = {
+        //   ...formData,
+        // };
 
-          setSend(true);
-          setRes(await updateIngredient(customFormData, id));
-          setSend(false);
-        } else {
-          const customFormData = {
-            ...formData,
-          };
-          setSend(true);
-          setRes(await updateIngredient(customFormData, id));
-          setSend(false);
-        }
-      }
+        const ingredient = ingredientsList.find((ing) => ing._id === id);
+
+        const customFormData = {
+          name: ingredient.name,
+          simpleSugars: ingredient.simpleSugars,
+          totalSugars: ingredient.totalSugars,
+          fat: ingredient.fat,
+          protein: ingredient.protein,
+          salt: ingredient.salt,
+          fiber: ingredient.fiber,
+        };
+
+        setSend(true);
+        setRes(await updateIngredient(customFormData, id));
+        setSend(false);
+      } //else {
+      //const customFormData = {
+      //    ...formData,
+      //  };
+      //  setSend(true);
+      //  setRes(await updateIngredient(customFormData, id));
+      // setSend(false);
+      //   }
+      // }
     });
   };
 
   const handleInputChange = (e, ingredientId) => {
-    const { name, value } = e.target;
-    setInputValues((prevInputValues) => ({
-      ...prevInputValues,
-      [ingredientId]: {
-        ...prevInputValues[ingredientId],
-        [name]: value,
-      },
-    }));
+    // const { name, value } = e.target;
+    // setInputValues((prevInputValues) => ({
+    //   ...prevInputValues,
+    //   [ingredientId]: {
+    //     ...prevInputValues[ingredientId],
+    //     [name]: value,
+    //   },
+    // }));
+
+    const ingredientsCopy = [...ingredientsList];
+
+    ingredientsCopy.forEach((ing) => {
+      if (ing._id === ingredientId) ing[e.target.name] = e.target.value;
+    });
+
+    setIngredientsList(ingredientsCopy);
   };
 
   return (
@@ -73,15 +100,15 @@ export const AdminIngredients = () => {
         gap="5px"
       >
         {ingredientsList &&
-          ingredientsList.map((ingredient, index) => (
+          ingredientsList.map((ingredient) => (
             <form
-              onSubmit={handleSubmit((data) =>
-                formSubmit(data, ingredient._id)
-              )}
+              onSubmit={(e) => formSubmit(e, ingredient._id)}
               key={ingredient._id}
             >
               <HStack maxW={"100%"}>
-                <Button>Delete</Button>
+                <Button onClick={() => deleteIngredientService(ingredient._id)}>
+                  Delete
+                </Button>
                 <FormLabel>Name:</FormLabel>
                 <Input
                   maxW={"10rem"}
@@ -89,9 +116,9 @@ export const AdminIngredients = () => {
                   type="text"
                   isRequired
                   name="name"
-                  value={inputValues[ingredient._id]?.name || ingredient.name}
+                  defaultValue={ingredient.name}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register(`name${index}`)}
+                  // {...register(`name${index}`)}
                 />
                 <FormLabel>Simple sugars:</FormLabel>
                 <Input
@@ -99,12 +126,9 @@ export const AdminIngredients = () => {
                   type="number"
                   maxW="60px"
                   name="simpleSugars"
-                  value={
-                    inputValues[ingredient._id]?.simpleSugars ||
-                    ingredient.simpleSugars
-                  }
+                  defaultValue={ingredient.simpleSugars}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register(`simpleSugars${index}`)}
+                  // {...register(`simpleSugars${index}`)}
                 />
                 <FormLabel>Total sugars</FormLabel>
                 <Input
@@ -112,12 +136,9 @@ export const AdminIngredients = () => {
                   type="number"
                   maxW="60px"
                   name="totalSugars"
-                  value={
-                    inputValues[ingredient._id]?.totalSugars ||
-                    ingredient.totalSugars
-                  }
+                  defaultValue={ingredient.totalSugars}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register(`totalSugars${index}`)}
+                  // {...register(`totalSugars${index}`)}
                 />
                 <FormLabel>Fat</FormLabel>
                 <Input
@@ -125,9 +146,9 @@ export const AdminIngredients = () => {
                   type="number"
                   maxW="60px"
                   name="fat"
-                  value={inputValues[ingredient._id]?.fat || ingredient.fat}
+                  defaultValue={ingredient.fat}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register(`fat${index}`)}
+                  // {...register(`fat${index}`)}
                 />
                 <FormLabel>Protein</FormLabel>
                 <Input
@@ -135,11 +156,9 @@ export const AdminIngredients = () => {
                   type="number"
                   maxW="60px"
                   name="protein"
-                  value={
-                    inputValues[ingredient._id]?.protein || ingredient.protein
-                  }
+                  defaultValue={ingredient.protein}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register(`protein${index}`)}
+                  // {...register(`protein${index}`)}
                 />
                 <FormLabel>Salt</FormLabel>
                 <Input
@@ -147,9 +166,9 @@ export const AdminIngredients = () => {
                   type="number"
                   maxW="60px"
                   name="salt"
-                  value={inputValues[ingredient._id]?.salt || ingredient.salt}
+                  defaultValue={ingredient.salt}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register(`salt${index}`)}
+                  // {...register(`salt${index}`)}
                 />
                 <FormLabel>Fiber</FormLabel>
                 <Input
@@ -157,9 +176,9 @@ export const AdminIngredients = () => {
                   type="number"
                   maxW="60px"
                   name="fiber"
-                  value={inputValues[ingredient._id]?.fiber || ingredient.fiber}
+                  defaultValue={ingredient.fiber}
                   onChange={(e) => handleInputChange(e, ingredient._id)}
-                  {...register(`fiber${index}`)}
+                  // {...register(`fiber${index}`)}
                 />
                 <Button>Photo</Button>
                 <Button type="submit" disabled={send}>
@@ -172,91 +191,3 @@ export const AdminIngredients = () => {
     </>
   );
 };
-
-// return (
-//   <>
-//     {console.log("lista antes del form", ingredientsList)}
-//     <Flex justify="center" alignItems="center" dir="column" wrap="wrap">
-//       {/*mapeamos la lista de ingredientes para obtener cada uno de ellos */}
-//       {ingredientsList &&
-//         ingredientsList.map((ingredient) => (
-//           <form onSubmit={() => handleSubmit(formSubmit, ingredient._id)}>
-//             {console.log("ingrediente en el form", ingredient)}
-//             <HStack key={ingredient._id} maxW={"100%"}>
-//               <Button>Delete</Button>
-//               <FormLabel>Name:</FormLabel>
-//               <Input
-//                 maxW={"10rem"}
-//                 paddingX={1}
-//                 type="text"
-//                 isRequired
-//                 name="name"
-//                 defaultValue={ingredient.name}
-//                 {...register("name")}
-//               />
-//               <FormLabel>Simple sugars:</FormLabel>
-//               <Input
-//                 paddingX={1}
-//                 type="number"
-//                 maxW="60px"
-//                 name="simpleSugars"
-//                 defaultValue={ingredient.simpleSugars}
-//                 {...register("simpleSugars")}
-//               />
-//               <FormLabel>Total sugars</FormLabel>
-//               <Input
-//                 paddingX={1}
-//                 type="number"
-//                 maxW="60px"
-//                 name="totalSugars"
-//                 defaultValue={ingredient.totalSugars}
-//                 {...register("totalSugars")}
-//               />
-//               <FormLabel>Fat</FormLabel>
-//               <Input
-//                 paddingX={1}
-//                 type="number"
-//                 maxW="60px"
-//                 name="fat"
-//                 defaultValue={ingredient.fat}
-//                 {...register("fat")}
-//               />
-//               <FormLabel>Protein</FormLabel>
-//               <Input
-//                 paddingX={1}
-//                 type="number"
-//                 maxW="60px"
-//                 name="protein"
-//                 defaultValue={ingredient.protein}
-//                 {...register("protein")}
-//               />
-//               <FormLabel>Salt</FormLabel>
-//               <Input
-//                 paddingX={1}
-//                 type="number"
-//                 maxW="60px"
-//                 name="salt"
-//                 defaultValue={ingredient.salt}
-//                 {...register("salt")}
-//               />
-//               <FormLabel>Fiber</FormLabel>
-//               <Input
-//                 paddingX={1}
-//                 type="number"
-//                 maxW="60px"
-//                 name="fiber"
-//                 defaultValue={ingredient.fiber}
-//                 {...register("fiber")}
-//               />
-//               <Button>Photo</Button>
-//               <Button type="submit" disabled={send}>
-//                 Save
-//               </Button>
-//             </HStack>
-//           </form>
-//         ))}
-//       {console.log("lista después del form", ingredientsList)}
-//     </Flex>
-//   </>
-// );
-//};

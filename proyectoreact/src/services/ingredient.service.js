@@ -26,3 +26,12 @@ export const updateIngredient = async (formData, id) => {
     .then((res) => res)
     .catch((error) => error);
 };
+
+//!Delete ingredient
+export const deleteIngredientService = async (id) => {
+  return APIUser.delete(`/ingredients/${id}`, {
+    headers: { Authorization: `Bearer ${updateToken()}` },
+  })
+    .then((res) => res)
+    .catch((error) => error);
+};
