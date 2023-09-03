@@ -11,10 +11,11 @@ const Navbar = () => {
   return (
     <nav>
       <Flex justifyContent="space-around" p="7px" height="12vh">
-        <Box className="homeavatar" display="flex" >
-          <Avatar height="12vh"
-          width="50%"
-          position="cover"
+        <Box className="homeavatar" display="flex">
+          <Avatar
+            height="12vh"
+            width="50%"
+            position="cover"
             name="logo"
             src="https://us.123rf.com/450wm/moleks/moleks1507/moleks150700003/41889582-el-servicio-de-comida-caf%C3%A9-vector-logo-plantilla-de-dise%C3%B1o.jpg?ver=6"
           />
@@ -35,12 +36,16 @@ const Navbar = () => {
         <Box className="buttonsbar">
           {!user && (
             <NavLink to="/login" as="div">
-              <Button bgColor="#ffbf00" mx="4">Login</Button>
+              <Button bgColor="#ffbf00" mx="4">
+                Login
+              </Button>
             </NavLink>
           )}
           {!user && (
             <NavLink to="/register" as="div">
-              <Button bgColor="#ffbf00" mx="4">Register</Button>
+              <Button bgColor="#ffbf00" mx="4">
+                Register
+              </Button>
             </NavLink>
           )}
           {user && (
@@ -52,22 +57,30 @@ const Navbar = () => {
           )}
           {user && (
             <NavLink to="/dashboard" as="div">
-              <Button bgColor="#ffbf00" mx="4">Dashboard</Button>
+              <Button bgColor="#ffbf00" mx="4">
+                Dashboard
+              </Button>
             </NavLink>
           )}
           {user && (
             <NavLink to="/profile" as="div">
-              <Button mx="4" bgColor="#ffbf00">Profile</Button>
+              <Button mx="4" bgColor="#ffbf00">
+                Profile
+              </Button>
             </NavLink>
           )}
           {user && (user.role == "nutricionista" || user.role == "admin") && (
             <NavLink to="/adminRecipe" as="div">
-              <Button bgColor="orangered" mx="4">Admin Recipes</Button>
+              <Button bgColor="orangered" mx="4">
+                Admin Recipes
+              </Button>
             </NavLink>
           )}
           {user && (user.role == "nutricionista" || user.role == "admin") && (
             <NavLink to="/adminIngredient" as="div">
-              <Button bgColor="orangered" mx="4">Admin Ingredients</Button>
+              <Button bgColor="orangered" mx="4">
+                Admin Ingredients
+              </Button>
             </NavLink>
           )}
         </Box>
