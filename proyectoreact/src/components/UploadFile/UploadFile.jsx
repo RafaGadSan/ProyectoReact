@@ -1,8 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect } from "react"
 import "./Uploadfile.css"
-import { useForm } from "react-hook-form"
 export const Uploadfile = ({ registerForm }) => {
-  const { register, handleSubmit } = useForm()
   const ekUpload = () => {
     const Init = () => {
       var fileSelect = document.getElementById("file-upload")

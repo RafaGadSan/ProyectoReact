@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { getAllIngredients } from "../../services/ingredient.service"
 import { Box, Flex, Image, Text } from "@chakra-ui/react"
-import { Ingredient } from "../../components/Ingredient/Ingredient"
 import { Link } from "react-router-dom"
 
 export const Ingredients = () => {

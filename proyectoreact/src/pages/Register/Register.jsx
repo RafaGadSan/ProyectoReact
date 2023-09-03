@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react"
 import "./Register.css"
 import { useAuth } from "../../context/authContext"
@@ -24,7 +25,7 @@ export const Register = () => {
     formState: { errors },
   } = useForm()
   const [res, setRes] = useState({}) // estado para recibir y setear la respuesta
-  const [send, setSend] = useState(false) // estado para saber si se ha enviado
+  const [setSend] = useState(false) // estado para saber si se ha enviado
   const [okRegister, setOkRegister] = useState(false) //estado para saber si el registro se ha realizado correctamente
   const [gender, setGender] = useState(null) //estado para setear con los buttons de genero
 

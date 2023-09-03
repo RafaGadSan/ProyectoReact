@@ -1,4 +1,4 @@
-import { Flex, Box, Square, Text, Button, Image, Link } from "@chakra-ui/react"
+import { Flex, Box, Text, Image } from "@chakra-ui/react"
 import { NavLink } from "react-router-dom"
 
 export const Dashboard = () => {

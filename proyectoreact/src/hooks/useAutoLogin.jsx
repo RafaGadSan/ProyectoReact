@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import React from "react"
 import { autoLoginUser } from "../services/user.service"
 import { Navigate } from "react-router-dom"

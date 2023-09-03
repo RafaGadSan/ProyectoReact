@@ -1,7 +1,6 @@
 import { Button, Image, Text, VStack } from "@chakra-ui/react"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useNavigate, useLocation } from "react-router-dom"
-import { getIngredientById } from "../../services/ingredient.service"
 
 //hacer servicio
 

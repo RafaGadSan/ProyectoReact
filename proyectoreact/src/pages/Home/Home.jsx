@@ -1,5 +1,5 @@
 import "./Home.css"
-import { Flex, Box, Square, Text, Button } from "@chakra-ui/react"
+import { Flex, Box, Text, Button } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../../context/authContext"
 

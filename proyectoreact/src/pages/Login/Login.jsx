@@ -19,7 +19,7 @@ import { Link as ReactRouterLink } from "react-router-dom"
 export const Login = () => {
   const { register, handleSubmit } = useForm()
   const [res, setRes] = useState({}) //Estado para recibir y settear la respuesta
-  const [send, setSend] = useState(false) //Estado para saber y setear el envio
+  const [setSend] = useState(false) //Estado para saber y setear el envio
   const [loginOk, setLoginOk] = useState(false) //Estado para saber que el login se ha hecho correctamente
   const { userLogin, setUser } = useAuth() // Autorizacion del contexto
 

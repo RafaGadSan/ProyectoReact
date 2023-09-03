@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { useAuth } from "../../context/authContext"
 import { useEffect, useState } from "react"
 import {
@@ -12,9 +12,8 @@ import { useForm } from "react-hook-form"
 import { useAutoLogin } from "../../hooks/useAutoLogin"
 
 export const CheckCode = () => {
-  const navigate = useNavigate()
   const { register, handleSubmit } = useForm()
-  const { userComplete, userLogin, setUser } = useAuth() //destructuring de los parametros que necesitamos de useAuth
+  const { userComplete, userLogin } = useAuth() //destructuring de los parametros que necesitamos de useAuth
   const [res, setRes] = useState({}) // estado para recibir y setear la respuesta
   const [resResend, setResResend] = useState({}) //estado para recibir y setear el resend code
   const [send, setSend] = useState(false)

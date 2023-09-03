@@ -1,4 +1,4 @@
-import { Button, Image, Text, VStack, Box, Link } from "@chakra-ui/react"
+import { Button, Image, Text, VStack } from "@chakra-ui/react"
 import React, { useEffect, useState } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { getIngredientById } from "../../services/ingredient.service"
@@ -10,7 +10,7 @@ export const Recipe = () => {
 
   const location = useLocation() // usamos uselocaion para traernos la info de ingredients y ahorrar una llamada al servicio
 
-  const [recipe, setRecipe] = useState(location.state)
+  const [recipe] = useState(location.state)
   const [ingredients, setIngredients] = useState(null)
 
   useEffect(() => {
